@@ -18,7 +18,7 @@ export default {
       },
 
       colors: {
-        background: 'var(--background-color)',
+        landing: 'var(--background-color)',
         'custom-primary': '#9d2eef',
         'custom-secondary': '#3582fc',
       },

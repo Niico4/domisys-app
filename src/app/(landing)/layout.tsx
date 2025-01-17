@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Raleway } from 'next/font/google';
 import { HeroUIProvider } from '@heroui/react';
 
-import './styles/globals.css';
+import '../styles/globals.css';
 
 const raleway = Raleway({
   subsets: ['latin'],
