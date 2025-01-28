@@ -13,7 +13,7 @@ import {
 export const paths = [
   { label: 'Inicio', path: '/' },
   { label: 'Quienes Somos', path: '/about-us' },
-  { label: 'Testimonios', path: '/testimonials' },
+  { label: 'Ubicación', path: '/location' },
 ];
 
 export const socials = [

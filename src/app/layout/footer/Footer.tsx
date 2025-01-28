@@ -1,18 +1,22 @@
 import React from 'react';
+import Link from 'next/link';
 import { Button, Divider, Tooltip } from '@heroui/react';
 
 import Logo from '@/app/components/shared/Logo';
-import { paths, socials } from '@/app/(landing)/constants/constants';
+import { paths, socials } from '@/app/constants/constants';
 
 import LinkItem from '../navbar/LinkItem';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
   return (
     <footer className="flex flex-col w-full bg-black/20 py-14 backdrop-blur-md">
       <section className="flex flex-col justify-center mx-20 gap-4">
         <article className="flex justify-between items-center w-full">
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
 
           <ul className="flex-center gap-5">
             {paths.map(({ path, label }, index) => (

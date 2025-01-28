@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import { Raleway } from 'next/font/google';
 import { HeroUIProvider } from '@heroui/react';
 
-import '../styles/globals.css';
+import Footer from './layout/footer/Footer';
+import NavBar from './layout/navbar/NavBar';
+
+import './styles/globals.css';
 
 const raleway = Raleway({
   subsets: ['latin'],
@@ -22,8 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${raleway.className} antialiased custom-theme`}>
-        <HeroUIProvider>{children}</HeroUIProvider>
+      <body
+        className={`${raleway.className} antialiased bg-landing custom-theme`}
+      >
+        <HeroUIProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </HeroUIProvider>
       </body>
     </html>
   );

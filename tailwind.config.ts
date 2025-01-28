@@ -13,6 +13,7 @@ export default {
       backgroundImage: {
         'primary-gradient': 'var( --gradient-primary)',
         'background-gradient': 'var(--gradient-background)',
+        'about-section-gradient': 'var(--gradient-bg-about-us)',
         'logo-gradient': 'var(--gradient-logo)',
         'title-gradient': 'var(--gradient-title)',
       },

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button } from '@heroui/react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@heroui/react';
+import { IconInfoCircle, IconMapPin } from '@tabler/icons-react';
 
 import heroImage from '@/../public/hero.webp';
 
@@ -21,11 +23,26 @@ const HeroSection = () => {
         </article>
 
         <article className="flex-center gap-4">
-          <Button variant="flat" color="primary" className="text-[#c781ff]">
-            Sobre Nosotros
+          <Button
+            as={Link}
+            href="/location"
+            color="secondary"
+            size="lg"
+            variant="flat"
+            className="text-secondary-300"
+            startContent={<IconMapPin stroke={1.5} />}
+          >
+            Nuestra ubicación
           </Button>
-          <Button variant="shadow" color="secondary">
-            Iniciar Sesión
+
+          <Button
+            as={Link}
+            href="/about-us"
+            color="primary"
+            size="lg"
+            startContent={<IconInfoCircle stroke={1.5} />}
+          >
+            Más información
           </Button>
         </article>
 
