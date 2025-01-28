@@ -1,13 +1,12 @@
 import React from 'react';
+import Image from 'next/image';
 import { Card, CardBody, CardFooter } from '@heroui/react';
 import { IconAppWindowFilled } from '@tabler/icons-react';
-import Image from 'next/image';
 
 import shoppinCartImage from '@/../public/shopping-cart.webp';
-
-import StepperOrderState from '../../components/StepperOrderState';
-import CardFeature from '../../components/CardFeature';
-import { featureCardInfo } from '../constants/constants';
+import CardShadow from '@/app/components/CardShadow';
+import StepperOrderState from '@/app/components/StepperOrderState';
+import { featureCardInfo } from '@/app/constants/constants';
 
 const FeaturesSection = () => {
   return (
@@ -30,19 +29,19 @@ const FeaturesSection = () => {
 
       <article className="grid grid-cols-2 place-content-center w-4/5 gap-8 mx-auto">
         {featureCardInfo.map(({ title, description, color, icon }, index) => (
-          <CardFeature
+          <CardShadow
             key={index}
             title={title}
             description={description}
-            color={color}
+            colorIcon={color}
             icon={icon}
           />
         ))}
 
         <Card
-          className="flex-row bg-black/10 p-4"
+          className="flex-row bg-black/10 border border-gray-400/30 p-4"
           style={{
-            boxShadow: '2px 2px 8px 3px rgba(182, 182, 182, 0.2)',
+            boxShadow: '0px 0px 8px 3px rgba(182, 182, 182, 0.2)',
             gridColumn: '1 / -1',
           }}
         >

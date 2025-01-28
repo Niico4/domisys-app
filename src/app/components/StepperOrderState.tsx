@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
-import { steps } from '../(landing)/constants/constants';
+import { steps } from '../constants/constants';
 
 const StepperOrderState = () => {
   const [activeStep, setActiveStep] = useState(0);

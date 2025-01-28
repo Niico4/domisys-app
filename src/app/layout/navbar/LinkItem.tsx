@@ -15,7 +15,7 @@ const LinkItem: FC<Props> = ({ label, path }) => {
   return (
     <Link
       href={path}
-      className={`font-semibold ${isActive ? 'bg-primary-gradient bg-clip-text text-transparent' : 'text-gray-100 hover:opacity-60 transition-all'}`}
+      className={`text-lg ${isActive ? 'bg-blue-400 bg-clip-text text-transparent font-semibold' : 'text-gray-100 hover:opacity-80 transition-all'}`}
     >
       {label}
     </Link>

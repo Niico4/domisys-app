@@ -18,6 +18,12 @@
     var(--color-secondary) 0%,
     var(--color-primary) 100%
   );
+  --gradient-bg-about-us: linear-gradient(
+    90deg,
+    #190644,
+    var(--background-color),
+    #0b0121
+  );
 
   --gradient-logo: linear-gradient(90deg, #00fff7 0%, #ae4aff 100%);
   --gradient-title: linear-gradient(160deg, #e5e7eb 20%, #e5e7eb00 100%);
@@ -53,4 +59,18 @@
   background-size: cover;
 
   filter: blur(5px);
+}
+
+.slider-brands {
+  width: calc(100% * 2);
+  animation: slider 10s linear infinite;
+}
+
+@keyframes slider {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
