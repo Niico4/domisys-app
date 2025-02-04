@@ -8,7 +8,7 @@ import { socials } from '@/app/constants/constants';
 const AboutUsSection = () => {
   return (
     <>
-      <div className="hero-bg" />
+      <div className="hero-bg opacity-60" />
       <section className="relative w-4/5 mx-auto my-10">
         <div className="flex-center gap-20">
           <article className="flex flex-col items-start w-2/3 gap-4">

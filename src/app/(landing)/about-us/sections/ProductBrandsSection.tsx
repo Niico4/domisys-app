@@ -1,30 +1,33 @@
-import React from 'react';
 import Image from 'next/image';
 
 import { brands } from '@/app/constants/brands.data';
 
 const ProductBrandsSection = () => {
-  const duplicatedBrands = [...brands, ...brands];
   return (
-    <section className="relative overflow-hidden py-10 bg-landing">
-      <ul className="flex-center slider-brands">
-        <div className="flex-center gap-10">
-          {duplicatedBrands.map(({ id, image }, index) => (
-            <li key={index}>
+    <section className="relative w-4/5">
+      <div className="flex-col-center gap-8">
+        <h3 className="text-4xl font-medium text-gray-300/80">
+          Trabajamos con las mejores marcas
+        </h3>
+        <article className="flex-center gap-10">
+          {brands.map(({ id, image }, index) => (
+            <div
+              key={index}
+              className="relative bg-gradient-to-b from-gray-900/30 to-gray-600/30 shadow-md shadow-black/60 p-4 rounded-md opacity-90 hover:scale-105 hover:opacity-100 hover:shadow-purple-400/20 transition-all"
+            >
               <Image
                 src={image}
                 alt={`logo de ${id}`}
-                width={0}
-                height={0}
-                className="size-3/5 object-cover"
+                width={200}
+                height={200}
+                className="aspect-square object-contain"
                 loading="lazy"
               />
-            </li>
+            </div>
           ))}
-        </div>
-      </ul>
+        </article>
+      </div>
     </section>
   );
 };
-
 export default ProductBrandsSection;

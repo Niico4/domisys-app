@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Button, Divider, Tooltip } from '@heroui/react';
 
-import Logo from '@/app/components/shared/Logo';
+import Logo from '@/app/components/common/Logo';
 import { paths, socials } from '@/app/constants/constants';
 
 import LinkItem from '../navbar/LinkItem';

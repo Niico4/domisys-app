@@ -13,7 +13,7 @@ import {
   NavbarMenuToggle,
 } from '@heroui/react';
 
-import Logo from '@/app/components/shared/Logo';
+import Logo from '@/app/components/common/Logo';
 import { paths } from '@/app/constants/constants';
 
 import LinkItem from './LinkItem';
