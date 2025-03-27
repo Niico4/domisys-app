@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+@plugin 'daisyui';
+
+@plugin "daisyui/theme" {
+  name: 'light';
+  default: true;
+  prefersdark: true;
+  color-scheme: 'light';
+  --color-base-100: #1d1d1d;
+  --color-base-200: #1d1d1d;
+  --color-base-300: #3a3a3a;
+  --color-base-content: #bfbfbf;
+  --color-primary: #a0ced8;
+  --color-primary-content: #3a3a3a;
+  --color-secondary: #bfa0d8;
+  --color-secondary-content: #3a3a3a;
+  --color-accent: #a2a0d8;
+  --color-accent-content: #3a3a3a;
+  --color-neutral: #3a3a3a;
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(96% 0.067 122.328);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: #a9d8a0;
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: #d8c6a0;
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: #d8a0a0;
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@theme {
+  --color-brand-primary: #a0ced8;
+  --color-brand-secondary: #bfa0d8;
+
+  --color-surface-primary: #1a1a1a;
+  --color-surface-glass: rgba(255, 255, 255, 0.06);
+
+  --color-light: #fafafa;
+  --color-custom-neutral: #eeeeee;
+  --color-gray-light: #d7d7d7;
+  --color-gray: #bfbfbf;
+  --color-muted: #9a9a9a;
+  --color-dark: #333333;
+
+  --font-grandstander: 'Grandstander', system-ui;
+}
+
+body {
+  background-color: var(--color-surface-primary);
+
+  font-family: 'Inter', sans-serif;
+  color: var(--color-gray);
+}
+
+.surface-card {
+  @apply bg-surface-glass border border-white/5;
+}

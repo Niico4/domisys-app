@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+  icon: any;
+}
+
+const { class: className, icon: Icon } = Astro.props;
+---
+
+<div class={`${className} size-6`}>
+  {(<Icon />)}
+</div>
