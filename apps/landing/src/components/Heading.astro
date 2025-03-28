@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description: string;
+}
+
+const { title, description, label } = Astro.props;
+---
+
+<div class="flex-col-center w-4/5 gap-4 mx-auto">
+  <span
+    class="badge badge-primary text-xs rounded-full bg-brand-primary/15 text-brand-primary border-0"
+  >
+    {label}
+  </span>
+
+  <div class="flex-col-center gap-3">
+    <h2
+      class="text-3xl font-bold bg-clip-text text-transparent bg-[linear-gradient(163deg,_rgba(160,206,216,1)_0%,_rgba(160,206,216,0.5)_70%)]"
+    >
+      {title}
+    </h2>
+
+    <p class="text-lg text-center text-balance">{description}</p>
+  </div>
+</div>

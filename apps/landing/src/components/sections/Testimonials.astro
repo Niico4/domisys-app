@@ -1,0 +1,115 @@
+---
+import Heading from '../Heading.astro';
+
+const testimonialsMock = [
+  {
+    text: 'La implementación de DomiSys nos permitió expandirnos a nuevos barrios sin abrir mas locales físicos. Nuestra tienda ahora llega a toda la ciudad con entregas eficientes.',
+    name: 'Ana Valencia',
+    role: 'Directora de Farmacia Express',
+    img: 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp',
+  },
+  {
+    text: 'DomiSys nos ayudó a automatizar nuestros pedidos y entregas. Ahora podemos manejar más clientes sin perder calidad en el servicio.',
+    name: 'Carlos Méndez',
+    role: 'Gerente de Market Express',
+    img: 'https://i.pravatar.cc/150?u=a04258a2462d826712d',
+  },
+  {
+    text: 'Antes de usar DomiSys, gestionar pedidos era un caos. Ahora todo está organizado y nuestros clientes reciben sus compras en tiempo récord.',
+    name: 'María González',
+    role: 'Dueña de Panadería Delicias',
+    img: 'https://i.pravatar.cc/150?u=a042581f4e29026704d',
+  },
+  {
+    text: 'Gracias a DomiSys, nuestro negocio creció un 40% en ventas online. La plataforma es intuitiva y nos ha dado total control sobre nuestros envíos.',
+    name: 'Javier Ruiz',
+    role: 'Fundador de Fresh Market',
+    img: 'https://i.pravatar.cc/150?u=a04258114e29026302d',
+  },
+];
+---
+
+<section class="relative flex-col-center h-screen mx-auto py-14">
+  <div
+    class="absolute top-0 right-0 left-0 bg-[url('/wavesOpacity.svg')] w-full h-40 -z-10 opacity-10"
+  >
+  </div>
+
+  <div
+    class="absolute bottom-0 right-0 left-0 bg-[url('/wavesOpacity.svg')] w-full h-56 -z-10 opacity-10 rotate-180"
+  >
+  </div>
+
+  <div class="flex-col-center w-4/5 gap-12">
+    <div class="flex-col-center w-1/2 gap-4 mx-auto">
+      <h2
+        class="font-grandstander text-5xl font-bold bg-clip-text text-transparent bg-[linear-gradient(163deg,_rgba(160,206,216,1)_0%,_rgba(160,206,216,0.6)_70%)]"
+      >
+        Lo que dicen nuestros clientes
+      </h2>
+
+      <p class="text-lg text-center text-balance text-muted">
+        Negocio de todos los tamaños están transformando su operación y
+        creciendo con DomiSys.
+      </p>
+    </div>
+
+    <div class="carousel w-1/2 group">
+      {
+        testimonialsMock.map(({ name, role, text, img }, index) => (
+          <div id={`item${index}`} class="carousel-item relative w-full">
+            <div class="flex flex-col items-start justify-center w-full gap-3 p-6 rounded-lg surface-glass">
+              <p class="text-xl font-medium">“{text}”</p>
+
+              <div class="flex-center gap-4">
+                <div class="avatar">
+                  <div class="w-12 rounded-full">
+                    <img src={img} alt={`Imagen del cliente ${index}`} />
+                  </div>
+                </div>
+                <div class="flex-center gap-3">
+                  <div class="flex flex-col">
+                    <h4 class="font-semibold text-light">{name}</h4>
+                    <p class="text-sm text-gray">{role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex-center gap-4">
+      {
+        testimonialsMock.map((_, index) => (
+          <a
+            id={`btn${index}`}
+            href={`#item${index}`}
+            class="btn btn-soft btn-secondary btn-sm"
+          >
+            {index + 1}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.btn-sm');
+
+    const updateActiveButton = () => {
+      let activeIndex = window.location.hash.replace('#item', '');
+      if (activeIndex === '') activeIndex = '0';
+
+      buttons.forEach((btn, index) => {
+        btn.classList.toggle('btn-primary', index == Number(activeIndex));
+        btn.classList.toggle('btn-soft', index != Number(activeIndex));
+      });
+    };
+
+    window.addEventListener('hashchange', updateActiveButton);
+    updateActiveButton();
+  });
+</script>
