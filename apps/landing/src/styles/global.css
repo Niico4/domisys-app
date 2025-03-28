@@ -60,6 +60,14 @@ body {
   color: var(--color-gray);
 }
 
-.surface-card {
+.surface-glass {
   @apply bg-surface-glass border border-white/5;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-col-center {
+  @apply flex flex-col items-center justify-center;
 }

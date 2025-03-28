@@ -1,0 +1,31 @@
+---
+import ArrowNarrowRight from '@/components/icons/ArrowNarrowRight.astro';
+import WrapperIcon from '@/components/WrapperIcon.astro';
+---
+
+<article class="flex flex-col justify-center items-start gap-6">
+  <div class="flex flex-col justify-center gap-4">
+    <span class="badge badge-soft badge-primary rounded-full mb-2">
+      Solución todo en uno para e-commerce y delivery
+    </span>
+
+    <h1 class="text-5xl font-bold text-light">
+      Convierte tu tienda en un <span class="text-brand-primary"
+        >e-commerce</span
+      >
+      con gestión de domicilios
+    </h1>
+
+    <p class="text-lg font-medium text-balance">
+      DomiSys te permite vender online, gestionar inventario, asignar pedidos y
+      hacer entregas con facilidad.
+    </p>
+  </div>
+
+  <div class="flex-center gap-4">
+    <button class="btn btn-primary gap-3"
+      >Solicitar demo <WrapperIcon icon={ArrowNarrowRight} /></button
+    >
+    <button class="btn btn-outline btn-primary">Ver video</button>
+  </div>
+</article>
