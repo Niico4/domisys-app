@@ -1,6 +1,4 @@
 ---
-import Heading from '../Heading.astro';
-
 const testimonialsMock = [
   {
     text: 'La implementación de DomiSys nos permitió expandirnos a nuevos barrios sin abrir mas locales físicos. Nuestra tienda ahora llega a toda la ciudad con entregas eficientes.',
@@ -31,12 +29,12 @@ const testimonialsMock = [
 
 <section class="relative flex-col-center h-screen mx-auto py-14">
   <div
-    class="absolute top-0 right-0 left-0 bg-[url('/wavesOpacity.svg')] w-full h-40 -z-10 opacity-10"
+    class="absolute top-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] w-full h-40 -z-10 opacity-10"
   >
   </div>
 
   <div
-    class="absolute bottom-0 right-0 left-0 bg-[url('/wavesOpacity.svg')] w-full h-56 -z-10 opacity-10 rotate-180"
+    class="absolute bottom-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] w-full h-56 -z-10 opacity-10 rotate-180"
   >
   </div>
 
@@ -82,13 +80,13 @@ const testimonialsMock = [
     <div class="flex-center gap-4">
       {
         testimonialsMock.map((_, index) => (
-          <a
+          <button
             id={`btn${index}`}
-            href={`#item${index}`}
+            data-index={index}
             class="btn btn-soft btn-secondary btn-sm"
           >
             {index + 1}
-          </a>
+          </button>
         ))
       }
     </div>
@@ -98,18 +96,26 @@ const testimonialsMock = [
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.btn-sm');
+    const items = document.querySelectorAll('.carousel-item');
 
-    const updateActiveButton = () => {
-      let activeIndex = window.location.hash.replace('#item', '');
-      if (activeIndex === '') activeIndex = '0';
+    const updateCarousel = (index: number) => {
+      items.forEach((item, i) => {
+        item.classList.toggle('hidden', i !== index);
+      });
 
-      buttons.forEach((btn, index) => {
-        btn.classList.toggle('btn-primary', index == Number(activeIndex));
-        btn.classList.toggle('btn-soft', index != Number(activeIndex));
+      buttons.forEach((btn, i) => {
+        btn.classList.toggle('btn-primary', i === index);
+        btn.classList.toggle('btn-soft', i !== index);
       });
     };
 
-    window.addEventListener('hashchange', updateActiveButton);
-    updateActiveButton();
+    buttons.forEach((btn, index) => {
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        updateCarousel(index);
+      });
+    });
+
+    updateCarousel(0);
   });
 </script>

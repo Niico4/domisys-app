@@ -1,9 +1,8 @@
 ---
 import Heading from '../Heading.astro';
-import WrapperIcon from '../WrapperIcon.astro';
-import BuildingStore from '@icons/BuildingStore.astro';
-import KitchenTools from '@icons/KitchenTools.astro';
-import ShoppingBag from '@icons/ShoppingBag.astro';
+import BuildingStore from '@icons/building-store.svg';
+import ToolsKitchen from '@icons/tools-kitchen-2.svg';
+import ShoppingBag from '@icons/shopping-bag.svg';
 
 const cardsContent = [
   {
@@ -15,7 +14,7 @@ const cardsContent = [
 
   {
     title: 'Restaurantes',
-    icon: KitchenTools,
+    icon: ToolsKitchen,
     description:
       'Recibe pedidos online, gestiona tu menú y coordina tus domiciliarios para entregar los pedidos en tiempo récord.',
   },
@@ -39,10 +38,10 @@ const cardsContent = [
 
     <article class="flex-center gap-9">
       {
-        cardsContent.map(({ description, icon, title }) => (
+        cardsContent.map(({ description, icon: Icon, title }) => (
           <div class="flex-col-center w-96 gap-3 rounded-lg p-5 surface-glass shadow-md shadow-black/50 hover:scale-105 transition-all">
             <div class="p-2 rounded-full text-brand-primary bg-brand-primary/20">
-              <WrapperIcon icon={icon} />
+              <Icon />
             </div>
 
             <h3 class="text-xl font-semibold text-custom-neutral">{title}</h3>

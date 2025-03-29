@@ -1,15 +1,14 @@
 ---
 import Heading from '../Heading.astro';
-import WrapperIcon from '../WrapperIcon.astro';
-import CreditCard from '@icons/CreditCard.Lock.astro';
-import DeviceDesktopAnalytics from '@icons/DeviceDesktopAnalytics.astro';
-import MapPin from '@icons/MapPin.astro';
-import Package from '@icons/Package.astro';
-import Lock from '@icons/Lock.astro';
-import ShoppingBag from '@icons/ShoppingBag.astro';
-import Truck from '@icons/Truck.astro';
-import Clock from '@icons/Clock.astro';
-import Heart from '@icons/Heart.astro';
+import CreditCard from '@icons/credit-card.svg';
+import DeviceDesktopAnalytics from '@icons/device-desktop-analytics.svg';
+import MapPin from '@icons/map-pin-2.svg';
+import Package from '@icons/package.svg';
+import Lock from '@icons/lock.svg';
+import ShoppingBag from '@icons/shopping-bag.svg';
+import Truck from '@icons/truck.svg';
+import Clock from '@icons/clock.svg';
+import Heart from '@icons/heart.svg';
 
 const benefits = [
   {
@@ -80,7 +79,7 @@ const benefits = [
 
   <article class="flex justify-center flex-wrap gap-5">
     {
-      benefits.map(({ icon, description, title }) => (
+      benefits.map(({ icon: Icon, description, title }) => (
         <div
           class="flex flex-col justify-center w-[400px] gap-2 p-5 rounded-lg transition-all duration-200 
           bg-surface-glass border border-white/5 shadow shadow-black/50 group 
@@ -91,7 +90,7 @@ const benefits = [
               class="p-2 text-brand-primary bg-brand-primary/20 rounded-lg transition-all duration-200 
               group-hover:text-brand-secondary group-hover:bg-brand-secondary/20"
             >
-              <WrapperIcon icon={icon} />
+              <Icon />
             </div>
             <h3 class="text-lg font-medium text-custom-neutral">{title}</h3>
           </div>

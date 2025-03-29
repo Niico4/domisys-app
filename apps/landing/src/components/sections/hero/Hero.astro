@@ -1,9 +1,8 @@
 ---
-import ChartLine from '@/components/icons/ChartLine.astro';
-import ShoppingCart from '@/components/icons/ShoppingCart.astro';
-import WrapperIcon from '@/components/WrapperIcon.astro';
-import CountAnimated from './CountAnimated';
 import Header from './Header.astro';
+import CountAnimated from './CountAnimated';
+import ChartLine from '@icons/chart-line.svg';
+import ShoppingCart from '@icons/shopping-cart.svg';
 
 const stats = [
   {
@@ -54,7 +53,7 @@ const stats = [
 
   <figure class="w-full relative">
     <img
-      src="/hero.webp"
+      src="/images/hero.webp"
       alt="Imagen del Dashboard"
       class="w-full h-full object-cover rounded-lg opacity-90"
     />
@@ -62,14 +61,14 @@ const stats = [
     <div
       class="absolute top-6 left-4 flex-center gap-2 text-sm rounded-lg p-2 w-fit backdrop-blur-[3px] scale-110 -rotate-12 text-light bg-white/[0.04]"
     >
-      <WrapperIcon icon={ShoppingCart} class="text-brand-primary" />
+      <ShoppingCart class="text-brand-primary" />
       <p>124 nuevos pedidos</p>
     </div>
 
     <div
       class="absolute bottom-9 right-8 flex-center gap-2 text-sm rounded-lg p-2 w-fit backdrop-blur-[3px] scale-125 text-light bg-white/[0.06]"
     >
-      <WrapperIcon icon={ChartLine} class="text-brand-primary" />
+      <ChartLine class="text-brand-primary" />
       <p>Ventas +24%</p>
     </div>
   </figure>

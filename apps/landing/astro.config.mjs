@@ -11,4 +11,9 @@ export default defineConfig({
   },
 
   integrations: [react()],
+  experimental: {
+    svg: {
+      mode: 'sprite',
+    },
+  },
 });

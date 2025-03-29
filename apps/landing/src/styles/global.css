@@ -60,14 +60,24 @@ body {
   color: var(--color-gray);
 }
 
-.surface-glass {
-  @apply bg-surface-glass border border-white/5;
+@utility surface-glass {
+  background-color: var(--color-surface-glass);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.flex-center {
-  @apply flex items-center justify-center;
+@utility flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.flex-col-center {
-  @apply flex flex-col items-center justify-center;
+@utility flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@utility mask-fade-bottom {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }

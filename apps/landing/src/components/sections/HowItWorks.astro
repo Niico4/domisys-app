@@ -1,9 +1,8 @@
 ---
 import Heading from '@/components/Heading.astro';
-import WrapperIcon from '@/components/WrapperIcon.astro';
-import BuildingStore from '@icons/BuildingStore.astro';
-import ShoppingCart from '@icons/ShoppingCart.astro';
-import Truck from '@icons/Truck.astro';
+import BuildingStore from '@icons/building-store.svg';
+import ShoppingCart from '@icons/shopping-cart.svg';
+import Truck from '@icons/truck.svg';
 
 const steps = [
   {
@@ -31,9 +30,9 @@ const steps = [
 ---
 
 <section class="relative flex-col-center w-full h-screen gap-12">
-  <div class="absolute inset-0 bg-surface-primary/90 backdrop- -z-10"></div>
+  <div class="absolute inset-0 bg-surface-primary/90 -z-10"></div>
   <div
-    class="absolute inset-0 bg-[url('/cryptocurrency.png')] bg-cover bg-center -z-20"
+    class="absolute inset-0 bg-[url('/images/cryptocurrency.webp')] bg-cover bg-center mask-fade-bottom -z-20"
   >
   </div>
 
@@ -45,14 +44,14 @@ const steps = [
 
   <article class="flex-center gap-12">
     {
-      steps.map(({ icon, description, title, badge }) => (
-        <div class="flex-col-center w-96 rounded-lg p-5 surface-glass backdrop-blur-sm shadow-[0px_4px_4px] shadow-black/25">
+      steps.map(({ icon: Icon, description, title, badge }) => (
+        <div class="group flex-col-center w-96 rounded-lg p-5 surface-glass backdrop-blur-sm shadow-[0px_4px_4px] shadow-black/25">
           <div class="relative p-4 pb-3">
-            <span class="absolute top-0 right-0 badge text-[10px] rounded-full px-[6px] py-[2px] border-0 bg-brand-secondary/20 text-brand-secondary">
+            <span class="group-hover:scale-110 absolute top-0 right-0 badge text-[10px] rounded-full px-[6px] py-[2px] border-0 bg-brand-secondary/20 text-brand-secondary transition-all">
               {badge}
             </span>
             <div class="flex-center p-2 rounded-full bg-brand-primary/20 text-custom-neutral/70">
-              <WrapperIcon icon={icon} class="w-10 h-10" />
+              <Icon class="w-10 h-10" />
             </div>
           </div>
 
@@ -73,7 +72,7 @@ const steps = [
         Todo integrado en una única plataforma
       </h3>
       <p class="text-sm text-center text-gray">
-        DomiSys conecta todas las partes de tu operación de e-coommerce y
+        DomiSys conecta todas las partes de tu operación de e-commerce y
         entregas a domicilio en un flujo continuo y sin complicaciones.
       </p>
 
