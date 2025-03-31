@@ -1,91 +1,70 @@
 ---
 import Heading from '@/components/Heading.astro';
-import WrapperIcon from '@/components/WrapperIcon.astro';
-import BuildingStore from '@icons/BuildingStore.astro';
-import ShoppingCart from '@icons/ShoppingCart.astro';
-import Truck from '@icons/Truck.astro';
-
-const steps = [
-  {
-    icon: BuildingStore,
-    title: 'Configura tu tienda',
-    description:
-      'Amplia tu alcance con una tienda online y satisface a tus cliente con un servicio de entrega eficiente y confiable.',
-    badge: '01',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Recibe pedidos online',
-    description:
-      'Convierte tu tienda en un e-commerce y acepta pedidos de manera rápida y sencilla, sin complicaciones ni límites geográficos.',
-    badge: '02',
-  },
-  {
-    icon: Truck,
-    title: 'Entrega con facilidad',
-    description:
-      'Optimiza la gestión de envíos con una logística eficiente, asegurando entregas rápidas y sin inconvenientes para tus clientes.',
-    badge: '03',
-  },
-];
+import { HOW_IT_WORKS } from '@/constanst/how-it-works';
 ---
 
-<section class="relative flex-col-center w-full h-screen gap-12">
-  <div class="absolute inset-0 bg-surface-primary/90 backdrop- -z-10"></div>
+<section id="how-it-works" class="relative flex-col-center w-full py-16 gap-12">
+  <div class="absolute inset-0 bg-surface-primary/90 -z-10"></div>
   <div
-    class="absolute inset-0 bg-[url('/cryptocurrency.png')] bg-cover bg-center -z-20"
+    class="absolute inset-0 bg-[url('/images/cryptocurrency.webp')] bg-cover bg-center mask-fade-bottom -z-20"
   >
   </div>
 
-  <Heading
-    label="Simple y potente"
-    title="Cómo funciona"
-    description="DomiSys simplifica todo el proceso, desde la configuración inicial hasta la entrega final, permitiéndole concentrarte en hacer crecer tu negocio."
-  />
+  <div class="w-full px-6 md:w-4/5">
+    <Heading
+      label="Simple y potente"
+      title="Cómo funciona"
+      description="DomiSys simplifica todo el proceso, desde la configuración inicial hasta la entrega final, permitiéndole concentrarte en hacer crecer tu negocio."
+    />
+  </div>
 
-  <article class="flex-center gap-12">
-    {
-      steps.map(({ icon, description, title, badge }) => (
-        <div class="flex-col-center w-96 rounded-lg p-5 surface-glass backdrop-blur-sm shadow-[0px_4px_4px] shadow-black/25">
-          <div class="relative p-4 pb-3">
-            <span class="absolute top-0 right-0 badge text-[10px] rounded-full px-[6px] py-[2px] border-0 bg-brand-secondary/20 text-brand-secondary">
-              {badge}
-            </span>
-            <div class="flex-center p-2 rounded-full bg-brand-primary/20 text-custom-neutral/70">
-              <WrapperIcon icon={icon} class="w-10 h-10" />
+  <div class="w-11/12 md:w-4/5 mx-auto flex flex-col gap-12">
+    <article class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        HOW_IT_WORKS.map(({ icon: Icon, description, title, badge }) => (
+          <div class="surface-glass p-6 rounded-lg backdrop-blur-md shadow-lg flex flex-col items-center text-center">
+            <div class="relative mb-4">
+              <span class="absolute top-0 right-0 text-xs px-2 py-1 rounded-full bg-brand-secondary/20 text-brand-secondary">
+                {badge}
+              </span>
+              <div class="flex-center p-3 rounded-full bg-brand-primary/20 text-custom-neutral/70">
+                <Icon class="w-12 h-12" />
+              </div>
             </div>
-          </div>
 
-          <div class="flex-col-center gap-3">
-            <h3 class="text-xl font-semibold text-custom-neutral">{title}</h3>
-            <p class="text-sm text-center text-gray">{description}</p>
+            <h3 class="text-lg font-semibold text-custom-neutral">{title}</h3>
+            <p class="text-sm text-gray">{description}</p>
           </div>
-        </div>
-      ))
-    }
-  </article>
+        ))
+      }
+    </article>
 
-  <article class="flex-center">
-    <div
-      class="flex-col-center w-2/3 w-/ rounded-lg p-5 gap-3 surface-glass backdrop-blur-sm shadow-[0px_4px_4px] shadow-black/25"
-    >
-      <h3 class="text-xl font-semibold text-custom-neutral">
+    <article class="max-w-lg mx-auto surface-glass p-6 rounded-lg text-center">
+      <h3 class="text-xl font-semibold mb-3 text-custom-neutral">
         Todo integrado en una única plataforma
       </h3>
-      <p class="text-sm text-center text-gray">
-        DomiSys conecta todas las partes de tu operación de e-coommerce y
+      <p class="text-gray mb-6">
+        DomiSys conecta todas las partes de tu operación de e-commerce y
         entregas a domicilio en un flujo continuo y sin complicaciones.
       </p>
 
-      <ul class="flex-center rounded-lg bg-white/[0.06]">
-        <li class="px-2 py-[6px]">Inventario</li>
-        <li class="px-2 py-[6px] rounded-lg bg-brand-secondary text-dark">
-          Pedidos
-        </li>
-        <li class="px-2 py-[6px]">Repartidores</li>
-        <li class="px-2 py-[6px]">Entregas</li>
-        <li class="px-2 py-[6px]">Análisis</li>
-      </ul>
-    </div>
-  </article>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="px-4 py-2 rounded-md bg-surface-glass text-brand-primary"
+          >Inventario</span
+        >
+        <span class="px-4 py-2 rounded-md bg-brand-primary text-dark"
+          >Pedidos</span
+        >
+        <span class="px-4 py-2 rounded-md bg-surface-glass text-brand-primary"
+          >Repartidores</span
+        >
+        <span class="px-4 py-2 rounded-md bg-surface-glass text-brand-primary"
+          >Entregas</span
+        >
+        <span class="px-4 py-2 rounded-md bg-surface-glass text-brand-primary"
+          >Análisis</span
+        >
+      </div>
+    </article>
+  </div>
 </section>

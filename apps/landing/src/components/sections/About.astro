@@ -1,55 +1,28 @@
 ---
+import { TARGET_BUSINESSES } from '@/constanst/target-businesses';
 import Heading from '../Heading.astro';
-import WrapperIcon from '../WrapperIcon.astro';
-import BuildingStore from '@icons/BuildingStore.astro';
-import KitchenTools from '@icons/KitchenTools.astro';
-import ShoppingBag from '@icons/ShoppingBag.astro';
-
-const cardsContent = [
-  {
-    title: 'Tiendas y Supermercados',
-    icon: BuildingStore,
-    description:
-      'Gestiona tu inventario, recibe pedidos online y organiza entregas a domicilio, todo desde una única interfaz.',
-  },
-
-  {
-    title: 'Restaurantes',
-    icon: KitchenTools,
-    description:
-      'Recibe pedidos online, gestiona tu menú y coordina tus domiciliarios para entregar los pedidos en tiempo récord.',
-  },
-
-  {
-    title: 'Comercios Minoristas',
-    icon: ShoppingBag,
-    description:
-      'Amplia tu alcance con una tienda online y satisface a tus cliente con un servicio de entrega eficiente y confiable.',
-  },
-];
 ---
 
-<section class="w-full p-14 bg-white/[0.03]">
-  <div class="flex-col-center w-4/5 gap-10 mx-auto">
+<section id="about" class="w-full py-24 bg-white/[0.03]">
+  <div class="w-11/12 md:w-4/5 mx-auto">
     <Heading
-      title="¿Qué es DomiSys?"
+      label="Potencia tu negocio"
+      title="¿Qué es DomiSys"
       description="Una plataforma integral que transforma tu negocio local en un e-commerce completo con gestión de domicilios, ideal para supermercados, tiendas de conveniencia y restaurantes. DomiSys te da el control total de tus ventas y domicilios en una sola plataforma."
-      label="Potencia tu Negocio"
     />
 
-    <article class="flex-center gap-9">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
       {
-        cardsContent.map(({ description, icon, title }) => (
-          <div class="flex-col-center w-96 gap-3 rounded-lg p-5 surface-glass shadow-md shadow-black/50 hover:scale-105 transition-all">
-            <div class="p-2 rounded-full text-brand-primary bg-brand-primary/20">
-              <WrapperIcon icon={icon} />
+        TARGET_BUSINESSES.map(({ description, icon: Icon, title }) => (
+          <div class="surface-glass p-5 rounded-lg shadow-md hover:shadow-lg hover:shadow-black/30 transition-shadow duration-300 flex flex-col items-center text-center">
+            <div class="p-4 bg-brand-primary/10 rounded-full mb-6">
+              <Icon size={32} class="text-brand-primary" />
             </div>
-
-            <h3 class="text-xl font-semibold text-custom-neutral">{title}</h3>
-            <p class="text-sm text-center">{description}</p>
+            <h3 class="text-xl font-semibold mb-3">{title}</h3>
+            <p class="text-gray">{description}</p>
           </div>
         ))
       }
-    </article>
+    </div>
   </div>
 </section>
