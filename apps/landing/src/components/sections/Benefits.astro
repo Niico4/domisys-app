@@ -1,102 +1,71 @@
 ---
+import { BENEFITS } from '@/constanst/benefits';
 import Heading from '../Heading.astro';
-import CreditCard from '@icons/credit-card.svg';
-import DeviceDesktopAnalytics from '@icons/device-desktop-analytics.svg';
-import MapPin from '@icons/map-pin-2.svg';
-import Package from '@icons/package.svg';
-import Lock from '@icons/lock.svg';
-import ShoppingBag from '@icons/shopping-bag.svg';
-import Truck from '@icons/truck.svg';
-import Clock from '@icons/clock.svg';
-import Heart from '@icons/heart.svg';
-
-const benefits = [
-  {
-    icon: Package,
-    title: 'Gestión de inventario simplificada',
-    description:
-      'Controla tu stock en tiempo real, recibe alertas de productos con poco inventario y gestiona proveedores.',
-  },
-  {
-    icon: CreditCard,
-    title: 'Pedidos y pagos en línea',
-    description:
-      'Acepta pagos con tarjeta y otros métodos directamente en tu plataforma de e-commerce perzonalizada.',
-  },
-  {
-    icon: MapPin,
-    title: 'Asignación de repartidores',
-    description:
-      'Mapas en tiempo real optimización de rutas y gestión eficiente de tu equipo de entregas.',
-  },
-  {
-    icon: DeviceDesktopAnalytics,
-    title: 'Dashboard intuitivo',
-    description:
-      'Estadísticas y métricas claras para tomar decisiones informadas y mejorar constantemente.',
-  },
-  {
-    icon: Lock,
-    title: 'Seguridad y control total',
-    description:
-      'Controla tu stock en tiempo real, recibe alertas de productos con poco inventario y gestiona proveedores.',
-  },
-  {
-    icon: ShoppingBag,
-    title: 'Catálogo personalizable',
-    description:
-      'Crea un catálogo atractivo con categorías, imágenes y descripciones detalladas de tus productos. ',
-  },
-  {
-    icon: Truck,
-    title: 'Logística simplificada',
-    description:
-      'Automatiza la asignación de entregas y monitorea el estado de cada pedido en tiempo real.',
-  },
-  {
-    icon: Clock,
-    title: 'Mayor eficiencia',
-    description:
-      'Reduce tiempos de entrega y optimiza procesos con herramientas diseñadas para la velocidad.',
-  },
-  {
-    icon: Heart,
-    title: 'Fidelización de clientes',
-    description:
-      'Crea programas de lealtad, envía promociones y mantén a tus clientes comprando repetidamente.',
-  },
-];
 ---
 
-<section class="flex-col-center w-4/5 gap-12 h-screen mx-auto">
-  <div class="w-4/5">
+<section id="benefits" class="w-11/12 md:w-4/5 mx-auto py-24">
+  <div class="flex-col-center gap-12">
     <Heading
       label="Todo lo que necesitas"
       title="Beneficios clave"
       description="DomiSys transforma la manera en que gestionas tu negocio, optimizando cada aspecto desde el inventario hasta las entregas."
     />
-  </div>
 
-  <article class="flex justify-center flex-wrap gap-5">
-    {
-      benefits.map(({ icon: Icon, description, title }) => (
-        <div
-          class="flex flex-col justify-center w-[400px] gap-2 p-5 rounded-lg transition-all duration-200 
-          bg-surface-glass border border-white/5 shadow shadow-black/50 group 
-          hover:bg-brand-secondary/20 hover:border-brand-secondary/40 hover:scale-105 hover:-rotate-2"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="p-2 text-brand-primary bg-brand-primary/20 rounded-lg transition-all duration-200 
-              group-hover:text-brand-secondary group-hover:bg-brand-secondary/20"
-            >
-              <Icon />
+    <article class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        BENEFITS.map(({ icon: Icon, description, title }, index) => (
+          <div
+            id="card-animated"
+            class="flex flex-col justify-center  gap-2 p-6 rounded-lg transition-all duration-500 
+            bg-surface-glass border border-white/5 shadow shadow-black/50 opacity-0 translate-y-20"
+            style={`transition-delay: ${index * 100}ms;`}
+          >
+            <div class="flex items-center gap-3">
+              <div class="p-2 text-brand-primary bg-brand-primary/20 rounded-lg transition-all duration-200">
+                <Icon />
+              </div>
+              <h3 class="text-lg font-medium text-custom-neutral">{title}</h3>
             </div>
-            <h3 class="text-lg font-medium text-custom-neutral">{title}</h3>
+            <p class="text-sm">{description}</p>
           </div>
-          <p class="text-sm">{description}</p>
-        </div>
-      ))
-    }
-  </article>
+        ))
+      }
+    </article>
+  </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('#card-animated');
+    const section = document.getElementById('benefits');
+
+    if (!cards.length || !section) return;
+
+    const observerCards = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-20');
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    cards.forEach((card) => observerCards.observe(card));
+
+    const observerSection = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          cards.forEach((card) => {
+            card.classList.add('opacity-100', 'translate-y-0');
+          });
+        }
+      },
+      { threshold: 1 }
+    );
+
+    observerSection.observe(section);
+  });
+</script>

@@ -8,11 +8,11 @@ import Pin from '@icons/map-pin.svg';
 import BrandX from '@icons/brand-x.svg';
 ---
 
-<footer class="flex flex-col w-4/5 p-16 gap-10 mx-auto">
-  <div class="flex items-start justify-between">
-    <article class="flex flex-col justify-center w-1/4 gap-6">
+<footer class="flex flex-col w-full px-8 py-16 gap-10 mx-auto md:w-4/5">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <article class="flex flex-col justify-center md:justify-start gap-6">
       <Brand />
-      <p class="t">
+      <p class="text-sm md:text-base text-light">
         La solución completa para convertir tu negocio físico en un e-commerce
         exitoso con gestión de domicilios integrada.
       </p>
@@ -38,10 +38,10 @@ import BrandX from '@icons/brand-x.svg';
       </div>
     </article>
 
-    <article class="flex justify-center gap-10">
+    <article class="grid grid-cols-2 gap-6 lg:flex lg:justify-center lg:gap-10">
       <div class="flex flex-col gap-6">
-        <h4 class="text-xl font-semibold text-light">Enlaces rápidos</h4>
-        <ul class="flex flex-col gap-4 justify-center text-sm">
+        <h4 class="text-lg font-semibold text-light">Enlaces rápidos</h4>
+        <ul class="flex flex-col gap-4 text-sm">
           <li>¿Qué es?</li>
           <li>Beneficios</li>
           <li>Cómo funciona</li>
@@ -50,8 +50,8 @@ import BrandX from '@icons/brand-x.svg';
       </div>
 
       <div class="flex flex-col gap-6">
-        <h4 class="text-xl font-semibold text-light">Servicios</h4>
-        <ul class="flex flex-col gap-4 justify-center text-sm">
+        <h4 class="text-lg font-semibold text-light">Servicios</h4>
+        <ul class="flex flex-col gap-4 text-sm">
           <li>E-commerce</li>
           <li>Gestión de inventario</li>
           <li>Logística de inventario</li>
@@ -60,35 +60,39 @@ import BrandX from '@icons/brand-x.svg';
           <li>Soporte técnico</li>
         </ul>
       </div>
+    </article>
 
-      <div class="flex flex-col gap-6">
-        <h4 class="text-xl font-semibold text-light">Contacto</h4>
-        <ul class="flex flex-col gap-4 justify-center text-sm items-start">
-          <li class="flex-center gap-3">
-            <Pin class="text-brand-primary" />
-            <span>Calle Principal 123, Ciudad País</span>
-          </li>
-          <li class="flex-center gap-3">
-            <Phone class="text-brand-primary" />
-            <span>+57 344 347 8764</span>
-          </li>
-          <li class="flex-center gap-3">
-            <Mail class="text-brand-primary" />
-            <span>info@domisys.com</span>
-          </li>
-        </ul>
-      </div>
+    <article class="flex flex-col gap-6">
+      <h4 class="text-lg font-semibold text-light">Contacto</h4>
+      <ul class="flex flex-col gap-4 text-sm">
+        <li class="flex items-center gap-3">
+          <Pin class="text-brand-primary" />
+          <span>Calle Principal 123, Ciudad País</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Phone class="text-brand-primary" />
+          <span>+57 344 347 8764</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Mail class="text-brand-primary" />
+          <span>info@domisys.com</span>
+        </li>
+      </ul>
     </article>
   </div>
 
   <div class="w-full h-[1px] bg-dark"></div>
 
-  <div class="flex items-center justify-between">
+  <div
+    class="flex flex-col md:flex-row items-center justify-between text-center md:text-left"
+  >
     <span class="font-light text-sm">
       ©{new Date().getFullYear()} DomiSys. Todos los derechos reservados.
     </span>
 
-    <ul class="flex-center gap-4 font-medium text-sm">
+    <ul
+      class="flex flex-wrap justify-center gap-4 font-medium text-sm mt-4 md:mt-0"
+    >
       <li><a href="#">Términos y condiciones</a></li>
       <li class="font-light">|</li>
       <li><a href="#">Política de privacidad</a></li>
