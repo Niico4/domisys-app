@@ -11,5 +11,9 @@
   },
   "devDependencies": {
     "turbo": "^2.4.4"
+  },
+  "dependencies": {
+    "@fontsource-variable/space-grotesk": "^5.2.6",
+    "@fontsource/grandstander": "^5.2.5"
   }
 }

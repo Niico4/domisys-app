@@ -15,8 +15,8 @@ import { HOW_IT_WORKS } from '@/constanst/how-it-works';
     />
   </div>
 
-  <div class="w-11/12 md:w-4/5 mx-auto flex flex-col gap-12">
-    <article class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="w-11/12 md:w-3/5 mx-auto flex flex-col gap-12">
+    <article class="grid grid-cols-1 xl:grid-cols-3 gap-6">
       {
         HOW_IT_WORKS.map(({ icon: Icon, description, title }, index) => (
           <div
@@ -28,20 +28,20 @@ import { HOW_IT_WORKS } from '@/constanst/how-it-works';
               </div>
             </div>
 
-            <h3 class="text-lg font-semibold text-custom-neutral">{title}</h3>
-            <p class="text-sm text-gray">{description}</p>
+            <h4 class="text-xl font-semibold text-gray-light mb-4">{title}</h4>
+            <p class="font-light">{description}</p>
           </div>
         ))
       }
     </article>
 
     <article
-      class="w-full lg:w-1/2 mx-auto surface-glass p-6 rounded-lg text-center"
+      class="w-full xl:w-3/5 mx-auto surface-glass p-6 rounded-lg text-center"
     >
-      <h3 class="text-xl font-semibold mb-3 text-custom-neutral">
+      <h4 class="text-xl font-semibold mb-4 text-custom-neutral">
         Todo integrado en una única plataforma
-      </h3>
-      <p class="text-gray mb-6">
+      </h4>
+      <p class="font-light mb-6">
         DomiSys conecta todas las partes de tu operación de e-commerce y
         entregas a domicilio en un flujo continuo y sin complicaciones.
       </p>

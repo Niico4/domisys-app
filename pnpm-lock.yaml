@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@fontsource-variable/space-grotesk':
+        specifier: ^5.2.6
+        version: 5.2.6
+      '@fontsource/grandstander':
+        specifier: ^5.2.5
+        version: 5.2.5
     devDependencies:
       turbo:
         specifier: ^2.4.4
@@ -81,12 +88,9 @@ importers:
 
   apps/landing:
     dependencies:
-      '@fontsource/grandstander':
-        specifier: ^5.2.5
-        version: 5.2.5
-      '@fontsource/inter':
-        specifier: ^5.2.5
-        version: 5.2.5
+      '@domisys/ui':
+        specifier: workspace:*
+        version: link:../../package/ui
       '@tailwindcss/vite':
         specifier: ^4.0.17
         version: 4.0.17(vite@6.2.4(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2))
@@ -102,6 +106,8 @@ importers:
       tailwindcss-animated:
         specifier: ^2.0.0
         version: 2.0.0(tailwindcss@4.0.17)
+
+  package/ui: {}
 
 packages:
 
@@ -329,6 +335,9 @@ packages:
   '@eslint/plugin-kit@0.2.7':
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@fontsource-variable/space-grotesk@5.2.6':
+    resolution: {integrity: sha512-caoLd9SfhtOGYNIis8ek+sOGxO0NNJ5xGcTtlhCG3UA9N4xPa1AkeCDNOABocH0djVKHYl23CYtsmuDFqh3tiQ==}
 
   '@fontsource/grandstander@5.2.5':
     resolution: {integrity: sha512-O8klV1gBkf8CO91LVz9VI/zHZ4z4RlevVY8Yc5sB+R5dm7bMk8YgenRqN9IaiF3TPnk728eAcXUQrhswEP/MuA==}
@@ -2941,6 +2950,8 @@ snapshots:
     dependencies:
       '@eslint/core': 0.12.0
       levn: 0.4.1
+
+  '@fontsource-variable/space-grotesk@5.2.6': {}
 
   '@fontsource/grandstander@5.2.5': {}
 

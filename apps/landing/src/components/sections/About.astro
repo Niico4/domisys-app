@@ -3,7 +3,7 @@ import { TARGET_BUSINESSES } from '@/constanst/target-businesses';
 import Heading from '../Heading.astro';
 ---
 
-<section id="about" class="w-full py-24">
+<section id="about" class="w-full py-24 place-content-center h-full">
   <div class="w-11/12 md:w-4/5 mx-auto">
     <Heading
       label="Potencia tu negocio"
@@ -11,18 +11,24 @@ import Heading from '../Heading.astro';
       description="Una plataforma integral que transforma tu negocio local en un e-commerce completo con gestión de domicilios, ideal para supermercados, tiendas de conveniencia y restaurantes. DomiSys te da el control total de tus ventas y domicilios en una sola plataforma."
     />
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
+    <article
+      class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-12 md:w-4/5 mx-auto"
+    >
       {
-        TARGET_BUSINESSES.map(({ description, icon: Icon, title }) => (
-          <div class="surface-glass p-5 rounded-lg shadow-md hover:shadow-lg hover:shadow-black/30 transition-shadow duration-300 flex flex-col items-center text-center">
+        TARGET_BUSINESSES.map(({ description, icon: Icon, title }, index) => (
+          <div
+            class={`surface-glass p-5 rounded-lg shadow-md hover:shadow-lg hover:shadow-black/30 transition-shadow duration-300 flex flex-col items-center text-center ${index === 2 && 'max-xl:col-span-full'}`}
+          >
             <div class="p-4 bg-brand-primary/10 rounded-full mb-6">
               <Icon size={32} class="text-brand-primary" />
             </div>
-            <h3 class="text-xl font-semibold mb-3">{title}</h3>
-            <p class="text-gray">{description}</p>
+            <h3 class="text-2xl font-semibold mb-3 text-custom-neutral">
+              {title}
+            </h3>
+            <p class="font-light">{description}</p>
           </div>
         ))
       }
-    </div>
+    </article>
   </div>
 </section>

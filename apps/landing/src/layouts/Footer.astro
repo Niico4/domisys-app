@@ -8,11 +8,13 @@ import Pin from '@icons/map-pin.svg';
 import BrandX from '@icons/brand-x.svg';
 ---
 
-<footer class="flex flex-col w-full px-8 py-16 gap-10 mx-auto md:w-4/5">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-    <article class="flex flex-col justify-center md:justify-start gap-6">
-      <Brand />
-      <p class="text-sm md:text-base text-light">
+<footer class="flex flex-col w-full px-8 py-16 gap-10 bg-black">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-between lg:items-center gap-10 mx-auto md:w-4/5"
+  >
+    <article class="flex flex-col items-start gap-4 w-full md:w-[40%]">
+      <a href="#home"><Brand /></a>
+      <p class="text-sm md:text-base font-light text-gray-light mb-2">
         La solución completa para convertir tu negocio físico en un e-commerce
         exitoso con gestión de domicilios integrada.
       </p>
@@ -20,40 +22,31 @@ import BrandX from '@icons/brand-x.svg';
         <a
           href="#"
           class="flex-center p-2 rounded-full bg-surface-glass hover:bg-dark hover:text-light transition-all"
+          aria-label="Facebook"
         >
           <BrandFacebook />
         </a>
         <a
           href="#"
           class="flex-center p-2 rounded-full bg-surface-glass hover:bg-dark hover:text-light transition-all"
+          aria-label="X"
         >
           <BrandX />
         </a>
         <a
           href="#"
           class="flex-center p-2 rounded-full bg-surface-glass hover:bg-dark hover:text-light transition-all"
+          aria-label="Instagram"
         >
           <BrandInstagram />
         </a>
       </div>
     </article>
 
-    <article class="grid grid-cols-2 gap-6 lg:flex lg:justify-center lg:gap-10">
+    <article class="grid grid-cols-1 md:grid-cols-2 gap-3">
       <div class="flex flex-col gap-6">
-        <h4 class="text-lg font-semibold text-light">Enlaces rápidos</h4>
-        <ul class="flex flex-col gap-4 text-sm">
-          <li>
-            <a href="#about">¿Qué es?</a>
-          </li>
-          <li><a href="#benefits">Beneficios</a></li>
-          <li><a href="#how-it-works">Cómo funciona</a></li>
-          <li><a href="#testimonials">Testimonios</a></li>
-        </ul>
-      </div>
-
-      <div class="flex flex-col gap-6">
-        <h4 class="text-lg font-semibold text-light">Servicios</h4>
-        <ul class="flex flex-col gap-4 text-sm">
+        <h3 class="text-2xl font-semibold text-gray-light">Servicios</h3>
+        <ul class="flex flex-col gap-3 font-medium list-disc">
           <li>E-commerce</li>
           <li>Gestión de inventario</li>
           <li>Logística de inventario</li>
@@ -62,34 +55,36 @@ import BrandX from '@icons/brand-x.svg';
           <li>Soporte técnico</li>
         </ul>
       </div>
-    </article>
 
-    <article class="flex flex-col gap-6">
-      <h4 class="text-lg font-semibold text-light">Contacto</h4>
-      <ul class="flex flex-col gap-4 text-sm">
-        <li class="flex items-center gap-3">
-          <Pin class="text-brand-primary" />
-          <span>Calle Principal 123, Ciudad País</span>
-        </li>
-        <li class="flex items-center gap-3">
-          <Phone class="text-brand-primary" />
-          <span>+57 344 347 8764</span>
-        </li>
-        <li class="flex items-center gap-3">
-          <Mail class="text-brand-primary" />
-          <span>info@domisys.com</span>
-        </li>
-      </ul>
+      <div class="flex flex-col gap-3">
+        <h3 class="text-2xl font-semibold text-gray-light">Contacto</h3>
+        <ul class="flex flex-col gap-3 font-light">
+          <li class="flex items-center gap-3">
+            <Pin class="text-brand-primary" />
+            <span>Calle Principal 123, Ciudad País</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Phone class="text-brand-primary" />
+            <span>+57 344 347 8764</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Mail class="text-brand-primary" />
+            <span>info@domisys.com</span>
+          </li>
+        </ul>
+      </div>
     </article>
   </div>
 
-  <div class="w-full h-[1px] bg-dark"></div>
+  <div class="divider"></div>
 
   <div
-    class="flex flex-col md:flex-row items-center justify-between text-center md:text-left"
+    class="flex flex-col md:flex-row items-center justify-between text-center md:text-left w-4/5 mx-auto"
   >
     <span class="font-light text-sm">
-      ©{new Date().getFullYear()} DomiSys. Todos los derechos reservados.
+      ©{new Date().getFullYear()}
+      <span class="text-medium text-gray-light">DomiSys</span>. Todos los
+      derechos reservados.
     </span>
 
     <ul

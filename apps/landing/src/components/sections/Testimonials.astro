@@ -4,114 +4,49 @@ import { TESTIMONIALS_MOCK } from '@/constanst/testimonials';
 
 <section
   id="testimonials"
-  class="relative flex-col-center h-full md:h-screen mx-auto py-14 px-4"
+  class="relative flex flex-col items-center w-full h-full py-14 px-4 space-y-12 overflow-hidden"
 >
-  <div
-    class="absolute top-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] bg-no-repeat w-full h-40 -z-10 opacity-[4%]"
-  >
-  </div>
-  <div
-    class="absolute bottom-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] bg-no-repeat w-full h-56 -z-10 opacity-[4%] rotate-180"
-  >
-  </div>
-
-  <div class="flex-col-center w-full md:w-4/5 gap-12">
-    <div class="flex-col-center w-full xl:w-1/2 gap-4 mx-auto">
-      <h2
-        id="title-animated"
-        class="font-grandstander text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-[linear-gradient(163deg,_rgba(160,206,216,1)_0%,_rgba(160,206,216,0.6)_70%)] opacity-0 text-center"
-      >
-        Lo que dicen nuestros clientes
-      </h2>
-      <p class="text-base md:text-lg text-center text-balance text-muted">
-        Negocios de todos los tamaños están transformando su operación y
-        creciendo con DomiSys.
-      </p>
-    </div>
-
-    <div class="carousel w-full xl:w-1/2 group">
+  <div class="relative w-full overflow-hidden">
+    <div class="flex gap-6 animate-marquee w-[200%]">
       {
-        TESTIMONIALS_MOCK.map(({ img, name, role, text }, index) => (
-          <div id={`item${index}`} class="carousel-item relative w-full hidden">
-            <div class="flex flex-col items-start justify-center w-full gap-3 p-6 rounded-lg surface-glass">
-              <p class="text-lg md:text-xl font-medium">“{text}”</p>
-              <div class="flex-center gap-4">
-                <div class="avatar">
-                  <div class="w-10 md:w-12 rounded-full">
-                    <img src={img} alt={`Imagen del cliente ${index}`} />
-                  </div>
-                </div>
-                <div class="flex flex-col">
-                  <h4 class="font-semibold text-light text-sm md:text-base">
+        TESTIMONIALS_MOCK.concat(TESTIMONIALS_MOCK).map(
+          ({ img, name, role, text }, index) => (
+            <div class="w-[350px] md:w-[500px] p-6 rounded-xl shadow-lg bg-white/[0.04] border border-white/5 backdrop-blur-md">
+              <p class="text-lg md:text-xl text-gray/70">“{text}”</p>
+              <div class="flex items-center gap-4 mt-4">
+                <img
+                  src={img}
+                  alt={`Imagen del cliente ${index}`}
+                  class="w-12 h-12 rounded-full"
+                />
+                <div>
+                  <h4 class="font-semibold text-gray-light text-base">
                     {name}
                   </h4>
-                  <p class="text-xs md:text-sm text-gray">{role}</p>
+                  <p class="text-sm text-muted/80">{role}</p>
                 </div>
               </div>
             </div>
-          </div>
-        ))
-      }
-    </div>
-
-    <div class="flex-center gap-2 md:gap-4">
-      {
-        TESTIMONIALS_MOCK.map((_, index) => (
-          <button
-            id={`btn${index}`}
-            data-index={index}
-            class="btn btn-soft btn-secondary btn-xs md:btn-sm"
-          >
-            {index + 1}
-          </button>
-        ))
+          )
+        )
       }
     </div>
   </div>
+
+  <style>
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-marquee {
+      display: flex;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+  </style>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.btn-xs, .btn-sm');
-    const items = document.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
-
-    const updateCarousel = (index: number) => {
-      items.forEach((item, i) => item.classList.toggle('hidden', i !== index));
-      buttons.forEach((btn, i) => {
-        btn.classList.toggle('btn-primary', i === index);
-        btn.classList.toggle('btn-soft', i !== index);
-      });
-    };
-
-    buttons.forEach((btn, index) => {
-      btn.addEventListener('click', (event) => {
-        event.preventDefault();
-        currentIndex = index;
-        updateCarousel(index);
-      });
-    });
-
-    updateCarousel(0);
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % items.length;
-      updateCarousel(currentIndex);
-    }, 3000);
-
-    const title = document.getElementById('title-animated');
-    if (!title) return;
-
-    const observerTitle = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove('opacity-0');
-            entry.target.classList.add('opacity-100', 'animate-jump-in');
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-    observerTitle.observe(title);
-  });
-</script>
