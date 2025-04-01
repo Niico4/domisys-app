@@ -9,9 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource/grandstander": "^5.2.5",
-    "@fontsource/inter": "^5.2.5",
     "@tailwindcss/vite": "^4.0.17",
+    "@domisys/ui": "workspace:*",
     "astro": "^5.5.5",
     "daisyui": "^5.0.9",
     "tailwindcss": "^4.0.17",
