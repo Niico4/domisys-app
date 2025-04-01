@@ -4,19 +4,19 @@ import { TESTIMONIALS_MOCK } from '@/constanst/testimonials';
 
 <section
   id="testimonials"
-  class="relative flex-col-center h-screen mx-auto py-14 px-4"
+  class="relative flex-col-center h-full md:h-screen mx-auto py-14 px-4"
 >
   <div
-    class="absolute top-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] bg-no-repeat w-full h-40 -z-10 opacity-10"
+    class="absolute top-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] bg-no-repeat w-full h-40 -z-10 opacity-[4%]"
   >
   </div>
   <div
-    class="absolute bottom-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] bg-no-repeat w-full h-56 -z-10 opacity-10 rotate-180"
+    class="absolute bottom-0 right-0 left-0 bg-[url('/svg/waves-opacity.svg')] bg-no-repeat w-full h-56 -z-10 opacity-[4%] rotate-180"
   >
   </div>
 
   <div class="flex-col-center w-full md:w-4/5 gap-12">
-    <div class="flex-col-center w-full md:w-1/2 gap-4 mx-auto">
+    <div class="flex-col-center w-full xl:w-1/2 gap-4 mx-auto">
       <h2
         id="title-animated"
         class="font-grandstander text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-[linear-gradient(163deg,_rgba(160,206,216,1)_0%,_rgba(160,206,216,0.6)_70%)] opacity-0 text-center"
@@ -29,7 +29,7 @@ import { TESTIMONIALS_MOCK } from '@/constanst/testimonials';
       </p>
     </div>
 
-    <div class="carousel w-full md:w-1/2 group">
+    <div class="carousel w-full xl:w-1/2 group">
       {
         TESTIMONIALS_MOCK.map(({ img, name, role, text }, index) => (
           <div id={`item${index}`} class="carousel-item relative w-full hidden">
@@ -96,7 +96,7 @@ import { TESTIMONIALS_MOCK } from '@/constanst/testimonials';
     setInterval(() => {
       currentIndex = (currentIndex + 1) % items.length;
       updateCarousel(currentIndex);
-    }, 7000);
+    }, 3000);
 
     const title = document.getElementById('title-animated');
     if (!title) return;

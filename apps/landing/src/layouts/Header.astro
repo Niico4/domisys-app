@@ -6,14 +6,13 @@ import X from '@icons/x.svg';
 
 <header
   id="header"
-  class="py-5 fixed right-0 left-0 top-0 z-50 transition-all duration-300 bg-surface-glass backdrop-blur-sm"
+  class="fixed top-0 right-0 left-0 z-50 flex items-center mx-auto p-3 md:p-5 transition-all duration-500 ease-in-out backdrop-blur-md"
 >
   <div class="container mx-auto flex justify-between items-center px-4 md:px-6">
     <div class="flex items-center">
       <a href="#home"><Brand /></a>
     </div>
 
-    <!-- Desktop Navigation -->
     <nav class="hidden lg:flex items-center space-x-8 group">
       <a
         href="#about"
@@ -37,7 +36,6 @@ import X from '@icons/x.svg';
       >
     </nav>
 
-    <!-- Mobile Menu Button -->
     <div class="lg:hidden">
       <button id="menu-toggle" class="text-light">
         <Menu size="24" id="menu-icon" />
@@ -45,38 +43,36 @@ import X from '@icons/x.svg';
       </button>
     </div>
 
-    <!-- Auth Buttons - Desktop -->
     <div class="hidden lg:flex space-x-3">
       <button class="btn btn-soft btn-primary">Iniciar sesión</button>
       <button class="btn btn-primary">Registrarse</button>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="hidden lg:hidden absolute w-full bg-black/90 backdrop-blur-lg transition-all shadow-lg"
+    class="hidden lg:hidden fixed top-20 left-0 right-0 bg-black/95 transition-all rounded-lg duration-300 ease-in-out opacity-0 translate-y-[-10px]"
   >
-    <div class="container mx-auto p-8">
+    <div class="mx-auto rounded-lg p-8">
       <nav class="flex flex-col space-y-4">
         <a
           href="#about"
-          class="text-light hover:text-brand-primary transition-colors"
+          class="text-light hover:text-brand-primary transition-colors mobile-link"
           >¿Qué es?</a
         >
         <a
           href="#benefits"
-          class="text-light hover:text-brand-primary transition-colors"
+          class="text-light hover:text-brand-primary transition-colors mobile-link"
           >Beneficios</a
         >
         <a
           href="#how-it-works"
-          class="text-light hover:text-brand-primary transition-colors"
+          class="text-light hover:text-brand-primary transition-colors mobile-link"
           >Cómo funciona</a
         >
         <a
           href="#testimonials"
-          class="text-light hover:text-brand-primary transition-colors"
+          class="text-light hover:text-brand-primary transition-colors mobile-link"
           >Testimonios</a
         >
       </nav>
@@ -90,27 +86,52 @@ import X from '@icons/x.svg';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const header = document.getElementById('header');
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-    const closeIcon = document.getElementById('close-icon');
+    const $header = document.getElementById('header');
+    const $menuToggle = document.getElementById('menu-toggle');
+    const $mobileMenu = document.getElementById('mobile-menu');
+    const $menuIcon = document.getElementById('menu-icon');
+    const $closeIcon = document.getElementById('close-icon');
+    const $links = document.querySelectorAll('.mobile-link');
 
-    if (!header || !menuIcon || !menuToggle || !mobileMenu || !closeIcon)
+    if (!$header || !$menuIcon || !$menuToggle || !$mobileMenu || !$closeIcon)
       return;
 
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        header.classList.add('bg-domisys-dark/95', 'shadow-md');
+      if (window.scrollY > 200) {
+        $header.classList.add('bg-black/30', 'shadow-md', 'shadow-white/5');
       } else {
-        header.classList.remove('bg-domisys-dark/95', 'shadow-md');
+        $header.classList.remove('bg-black/30', 'shadow-md', 'shadow-white/5');
       }
     });
 
-    menuToggle.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('hidden');
-      menuIcon.classList.toggle('hidden', !isOpen);
-      closeIcon.classList.toggle('hidden', isOpen);
+    $menuToggle.addEventListener('click', () => {
+      const isOpen = $mobileMenu.classList.toggle('hidden');
+      setTimeout(() => {
+        $mobileMenu.style.opacity = isOpen ? '0' : '1';
+        $mobileMenu.style.transform = isOpen
+          ? 'translateY(-10px)'
+          : 'translateY(0)';
+      }, 10);
+      $menuIcon.classList.toggle('hidden', !isOpen);
+      $closeIcon.classList.toggle('hidden', isOpen);
     });
+
+    $links.forEach((link) => {
+      link.addEventListener('click', () => {
+        setTimeout(() => {
+          $mobileMenu.classList.add('hidden');
+          $menuIcon.classList.remove('hidden');
+          $closeIcon.classList.add('hidden');
+          $mobileMenu.style.opacity = '0';
+          $mobileMenu.style.transform = 'translateY(-10px)';
+        }, 400);
+      });
+    });
+  });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   });
 </script>

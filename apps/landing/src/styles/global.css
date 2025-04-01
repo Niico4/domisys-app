@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @import 'tailwindcss-animated';
-@import 'daisyui';
+@plugin 'daisyui';
 
 @plugin "daisyui/theme" {
   name: 'light';
@@ -54,16 +54,10 @@
   --font-grandstander: 'Grandstander', system-ui;
 }
 
-body {
-  background-color: var(--color-surface-primary);
-
-  font-family: 'Inter', sans-serif;
-  color: var(--color-gray);
-}
-
 @utility surface-glass {
   background-color: var(--color-surface-glass);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
 }
 
 @utility flex-center {

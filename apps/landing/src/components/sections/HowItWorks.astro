@@ -3,13 +3,10 @@ import Heading from '@/components/Heading.astro';
 import { HOW_IT_WORKS } from '@/constanst/how-it-works';
 ---
 
-<section id="how-it-works" class="relative flex-col-center w-full py-16 gap-12">
-  <div class="absolute inset-0 bg-surface-primary/90 -z-10"></div>
-  <div
-    class="absolute inset-0 bg-[url('/images/cryptocurrency.webp')] bg-cover bg-center mask-fade-bottom -z-20"
-  >
-  </div>
-
+<section
+  id="how-it-works"
+  class="relative flex-col-center w-full h-full xl:h-screen py-16 gap-12"
+>
   <div class="w-full px-6 md:w-4/5">
     <Heading
       label="Simple y potente"
@@ -21,12 +18,11 @@ import { HOW_IT_WORKS } from '@/constanst/how-it-works';
   <div class="w-11/12 md:w-4/5 mx-auto flex flex-col gap-12">
     <article class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {
-        HOW_IT_WORKS.map(({ icon: Icon, description, title, badge }) => (
-          <div class="surface-glass p-6 rounded-lg backdrop-blur-md shadow-lg flex flex-col items-center text-center">
+        HOW_IT_WORKS.map(({ icon: Icon, description, title }, index) => (
+          <div
+            class={`surface-glass p-6 rounded-lg backdrop-blur-md shadow-lg flex flex-col items-center text-center ${index === 2 && 'max-lg:col-span-full'}`}
+          >
             <div class="relative mb-4">
-              <span class="absolute top-0 right-0 text-xs px-2 py-1 rounded-full bg-brand-secondary/20 text-brand-secondary">
-                {badge}
-              </span>
               <div class="flex-center p-3 rounded-full bg-brand-primary/20 text-custom-neutral/70">
                 <Icon class="w-12 h-12" />
               </div>
@@ -39,7 +35,9 @@ import { HOW_IT_WORKS } from '@/constanst/how-it-works';
       }
     </article>
 
-    <article class="max-w-lg mx-auto surface-glass p-6 rounded-lg text-center">
+    <article
+      class="w-full lg:w-1/2 mx-auto surface-glass p-6 rounded-lg text-center"
+    >
       <h3 class="text-xl font-semibold mb-3 text-custom-neutral">
         Todo integrado en una única plataforma
       </h3>
