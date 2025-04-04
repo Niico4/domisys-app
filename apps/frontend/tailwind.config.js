@@ -6,7 +6,7 @@ export default {
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
     './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@heroui/theme/dist/components/(button|card|input).js',
+    './node_modules/@heroui/theme/dist/components/(button|card|input|input-otp).js',
   ],
   theme: {
     extend: {

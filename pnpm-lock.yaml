@@ -33,6 +33,9 @@ importers:
       '@heroui/input':
         specifier: ^2.4.16
         version: 2.4.16(@heroui/system@2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.12(tailwindcss@3.4.7))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@heroui/input-otp':
+        specifier: ^2.1.15
+        version: 2.1.15(@heroui/system@2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.12(tailwindcss@3.4.7))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@heroui/system':
         specifier: ^2.4.12
         version: 2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -447,6 +450,14 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
+  '@heroui/input-otp@2.1.15':
+    resolution: {integrity: sha512-9v4vdLjODy7l5B7/75UOOvuCFnwEC0XcnAJ2/KhW6kMnxSltWaWK3B+vZ3zjYTuT7fHMyYo8DDqnrdYvb0j3BA==}
+    peerDependencies:
+      '@heroui/system': '>=2.4.7'
+      '@heroui/theme': '>=2.4.6'
+      react: '>=18'
+      react-dom: '>=18'
+
   '@heroui/input@2.4.16':
     resolution: {integrity: sha512-gSEalFg2usD7SjkevRyulvbJksecW/L9vqZWGHgcm6NpOlt5lGb/b6E2AEuhNFWbrN4pgUmfFUqqmZfFbc4M9Q==}
     peerDependencies:
@@ -729,6 +740,12 @@ packages:
 
   '@react-aria/focus@3.20.1':
     resolution: {integrity: sha512-lgYs+sQ1TtBrAXnAdRBQrBo0/7o5H6IrfDxec1j+VRpcXL0xyk0xPq+m3lZp8typzIghqDgpnKkJ5Jf4OrzPIw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+      react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+
+  '@react-aria/form@3.0.13':
+    resolution: {integrity: sha512-f7zoFMQYBRWhKFX14rlFjSUDbNAvNMLpWRKVP3O0rUYTxh95iF5tcfUk5+lxWkVfmVj8S4O8du0ccv/ZQjPsYg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
       react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
@@ -2071,6 +2088,12 @@ packages:
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
+
+  input-otp@1.4.1:
+    resolution: {integrity: sha512-+yvpmKYKHi9jIGngxagY9oWiiblPB7+nEO75F2l2o4vs+6vpPZZmUl4tBNYuTCvQjhvEIbdNeJu70bhfYP2nbw==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc
 
   internal-slot@1.1.0:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
@@ -3815,6 +3838,23 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
+  '@heroui/input-otp@2.1.15(@heroui/system@2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.12(tailwindcss@3.4.7))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@heroui/form': 2.1.15(@heroui/system@2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.12(tailwindcss@3.4.7))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@heroui/react-utils': 2.1.8(react@19.1.0)
+      '@heroui/shared-utils': 2.1.7
+      '@heroui/system': 2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@heroui/theme': 2.4.12(tailwindcss@3.4.7)
+      '@react-aria/focus': 3.20.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/form': 3.0.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-stately/form': 3.1.2(react@19.1.0)
+      '@react-stately/utils': 3.10.5(react@19.1.0)
+      '@react-types/textfield': 3.12.0(react@19.1.0)
+      input-otp: 1.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
   '@heroui/input@2.4.16(@heroui/system@2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.12(tailwindcss@3.4.7))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@heroui/form': 2.1.15(@heroui/system@2.4.12(@heroui/theme@2.4.12(tailwindcss@3.4.7))(framer-motion@12.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.12(tailwindcss@3.4.7))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -4091,7 +4131,7 @@ snapshots:
     dependencies:
       '@react-aria/interactions': 3.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/toolbar': 3.0.0-beta.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-stately/toggle': 3.8.2(react@19.1.0)
       '@react-types/button': 3.11.0(react@19.1.0)
       '@react-types/shared': 3.28.0(react@19.1.0)
@@ -4105,7 +4145,7 @@ snapshots:
       '@react-aria/interactions': 3.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/label': 3.7.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/toggle': 3.11.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-stately/checkbox': 3.6.12(react@19.1.0)
       '@react-stately/form': 3.1.2(react@19.1.0)
       '@react-stately/toggle': 3.8.2(react@19.1.0)
@@ -4117,8 +4157,8 @@ snapshots:
 
   '@react-aria/focus@3.20.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@react-aria/interactions': 3.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/interactions': 3.24.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-types/shared': 3.28.0(react@19.1.0)
       '@swc/helpers': 0.5.15
       clsx: 2.1.1
@@ -4132,6 +4172,16 @@ snapshots:
       '@react-types/shared': 3.28.0(react@19.1.0)
       '@swc/helpers': 0.5.15
       clsx: 2.1.1
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@react-aria/form@3.0.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@react-aria/interactions': 3.24.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-stately/form': 3.1.2(react@19.1.0)
+      '@react-types/shared': 3.28.0(react@19.1.0)
+      '@swc/helpers': 0.5.15
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -4152,7 +4202,7 @@ snapshots:
       '@internationalized/number': 3.6.0
       '@internationalized/string': 3.2.5
       '@react-aria/ssr': 3.9.7(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-types/shared': 3.28.0(react@19.1.0)
       '@swc/helpers': 0.5.15
       react: 19.1.0
@@ -4174,7 +4224,7 @@ snapshots:
   '@react-aria/interactions@3.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@react-aria/ssr': 3.9.7(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-stately/flags': 3.1.0
       '@react-types/shared': 3.28.0(react@19.1.0)
       '@swc/helpers': 0.5.15
@@ -4205,7 +4255,7 @@ snapshots:
       '@react-aria/i18n': 3.12.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/interactions': 3.24.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/ssr': 3.9.7(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/visually-hidden': 3.8.21(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-stately/overlays': 3.6.14(react@19.1.0)
       '@react-types/button': 3.11.0(react@19.1.0)
@@ -4225,7 +4275,7 @@ snapshots:
       '@react-aria/form': 3.0.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/interactions': 3.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/label': 3.7.16(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-stately/form': 3.1.2(react@19.1.0)
       '@react-stately/utils': 3.10.5(react@19.1.0)
       '@react-types/shared': 3.28.0(react@19.1.0)
@@ -4247,9 +4297,9 @@ snapshots:
 
   '@react-aria/toolbar@3.0.0-beta.13(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@react-aria/focus': 3.20.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/focus': 3.20.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/i18n': 3.12.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-types/shared': 3.28.0(react@19.1.0)
       '@swc/helpers': 0.5.15
       react: 19.1.0
@@ -4280,7 +4330,7 @@ snapshots:
   '@react-aria/visually-hidden@3.8.20(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@react-aria/interactions': 3.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@react-aria/utils': 3.28.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@react-aria/utils': 3.28.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-types/shared': 3.28.0(react@19.1.0)
       '@swc/helpers': 0.5.15
       react: 19.1.0
@@ -5781,6 +5831,11 @@ snapshots:
   import-meta-resolve@4.1.0: {}
 
   imurmurhash@0.1.4: {}
+
+  input-otp@1.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   internal-slot@1.1.0:
     dependencies:

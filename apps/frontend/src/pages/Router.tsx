@@ -8,7 +8,7 @@ import {
 
 import SignInPage from './auth/SignIn';
 import SignUpPage from './auth/SignUp';
-import ForgotPasswordPage from './auth/recover-password/RecoverPassword';
+import RecoverPasswordPage from './auth/RecoverPassword';
 
 import { authPaths } from '@/constants/routerPaths';
 
@@ -36,7 +36,7 @@ export const router = createBrowserRouter(
         />
         <Route
           path={`/${authPaths.root}/${authPaths.recoverPassword}`}
-          element={<ForgotPasswordPage />}
+          element={<RecoverPasswordPage />}
         />
       </Route>
     </>,

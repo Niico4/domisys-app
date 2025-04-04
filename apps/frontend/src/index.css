@@ -7,7 +7,7 @@
   --color-brand-secondary: #bfa0d8;
 
   --color-surface-primary: #1a1a1a;
-  --color-surface-glass: rgba(255, 255, 255, 0.02);
+  --color-surface-glass: rgba(255, 255, 255, 0.05);
 
   --color-light: #fafafa;
   --color-custom-neutral: #eeeeee;
@@ -59,7 +59,7 @@ p {
 @layer utilities {
   .surface-glass {
     background-color: var(--color-surface-glass);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(4px);
   }
 
