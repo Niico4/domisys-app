@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.17",
-    "@domisys/ui": "workspace:*",
+    "@fontsource/space-grotesk": "^5.2.6",
+    "@fontsource/grandstander": "^5.2.5",
     "astro": "^5.5.5",
     "daisyui": "^5.0.9",
     "tailwindcss": "^4.0.17",

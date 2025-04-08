@@ -9,9 +9,9 @@ import {
 } from '@tabler/icons-react';
 import { toast } from 'sonner';
 
-import { PaymentMethod, PaymentMethodType } from '../types/payment';
+import { PaymentMethod, PaymentMethodType } from '../../types/payment';
 
-import Receipt from './components/Receipt';
+import Receipt from './Receipt';
 
 interface OrderConfirmationProps {
   total: number;
