@@ -57,11 +57,6 @@ domisys/
 ├── turbo.json          → Configuración del monorepo
 └── README.md
 ```
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/20955511/109414573-58994d00-79b3-11eb-8b49-85a6ed06539d.png" width="500" alt="Ilustración de arquitectura del proyecto" />
-</p>
-
 ---
 
 ## 🌟 Características principales
