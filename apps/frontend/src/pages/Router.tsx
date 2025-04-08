@@ -1,7 +1,6 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Navigate,
   Route,
   RouterProvider,
 } from 'react-router-dom';
@@ -22,10 +21,6 @@ export default function AppRouter() {
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route
-        path="/"
-        element={<Navigate replace to={`/${paths.root}/${paths.signIn}`} />}
-      />
       <Route path={paths.root}>
         <Route
           path={`/${paths.root}/${paths.signIn}`}
