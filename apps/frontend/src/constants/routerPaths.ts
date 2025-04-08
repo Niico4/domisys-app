@@ -4,7 +4,7 @@ export const paths = {
   signUp: 'sign-up',
   recoverPassword: 'recover-password',
 
-  home: 'home',
+  home: '/',
   shoppingCart: 'shopping-cart',
   orders: 'orders',
   profile: 'profile',
