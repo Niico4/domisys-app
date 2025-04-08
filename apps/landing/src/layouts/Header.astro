@@ -2,6 +2,11 @@
 import Brand from '@/components/Brand.astro';
 import Menu from '@icons/menu-2.svg';
 import X from '@icons/x.svg';
+
+const appUrl =
+  import.meta.env.MODE === 'development'
+    ? import.meta.env.PUBLIC_APP_URL_DEV
+    : import.meta.env.PUBLIC_APP_URL_PROD;
 ---
 
 <header
@@ -43,8 +48,12 @@ import X from '@icons/x.svg';
     </div>
 
     <div class="hidden lg:flex space-x-3">
-      <button class="btn btn-soft btn-primary">Iniciar sesión</button>
-      <button class="btn btn-primary">Registrarse</button>
+      <a href={`${appUrl}/auth/sign-in`} class="btn btn-soft btn-primary">
+        Iniciar sesión
+      </a>
+      <a href={`${appUrl}/auth/sign-up`} class="btn btn-primary">
+        Registrarse
+      </a>
     </div>
   </div>
 
@@ -76,10 +85,18 @@ import X from '@icons/x.svg';
         >
       </nav>
       <div class="mt-4 flex flex-col space-y-3">
-        <a href="/auth/sign-in" class="btn btn-soft btn-primary">
+        <a
+          href={`${import.meta.env.PUBLIC_APP_URL}/auth/sign-in`}
+          class="btn btn-soft btn-primary"
+        >
           Iniciar sesión
         </a>
-        <a href="/auth/sign-up" class="btn btn-primary"> Registrarse </a>
+        <a
+          href={`${import.meta.env.PUBLIC_APP_URL}/auth/sign-up`}
+          class="btn btn-primary"
+        >
+          Registrarse
+        </a>
       </div>
     </div>
   </div>
