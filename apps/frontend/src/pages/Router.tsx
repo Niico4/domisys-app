@@ -22,18 +22,9 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path={paths.root}>
-        <Route
-          path={`/${paths.root}/${paths.signIn}`}
-          element={<SignInPage />}
-        />
-        <Route
-          path={`/${paths.root}/${paths.signUp}`}
-          element={<SignUpPage />}
-        />
-        <Route
-          path={`/${paths.root}/${paths.recoverPassword}`}
-          element={<RecoverPasswordPage />}
-        />
+        <Route path={paths.signIn} element={<SignInPage />} />
+        <Route path={paths.signUp} element={<SignUpPage />} />
+        <Route path={paths.recoverPassword} element={<RecoverPasswordPage />} />
       </Route>
 
       <Route path="/" element={<Layout />}>
