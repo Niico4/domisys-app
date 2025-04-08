@@ -22,7 +22,7 @@ import {
   PaymentMethod,
 } from '@/modules/customer/types/payment';
 import OrderSummary from '@/modules/customer/shopping-cart/components/OrderSummary';
-import OrderConfirmation from '@/modules/customer/shopping-cart/OrderConfirmation';
+import OrderConfirmation from '@/modules/customer/shopping-cart/components/OrderConfirmation';
 
 const SHOPPING_COST = 3000;
 
@@ -152,12 +152,7 @@ const ShoppingCartPage = () => {
       case 'nequi':
         return <NequiForm paymentMethods={paymentMethods} {...commonProps} />;
       case 'cash':
-        return (
-          <CashForm
-            selectedPaymentMethod={selectedPaymentMethod}
-            setSelectedPaymentMethod={setSelectedPaymentMethod}
-          />
-        );
+        return <CashForm />;
       default:
         return null;
     }

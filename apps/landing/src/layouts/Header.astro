@@ -37,8 +37,8 @@ import X from '@icons/x.svg';
 
     <div class="lg:hidden">
       <button id="menu-toggle" class="text-light">
-        <Menu size="24" id="menu-icon" />
-        <X size="24" id="close-icon" class="hidden" />
+        <Menu width={24} height={24} id="menu-icon" />
+        <X width={24} height={24} id="close-icon" class="hidden" />
       </button>
     </div>
 
@@ -76,8 +76,10 @@ import X from '@icons/x.svg';
         >
       </nav>
       <div class="mt-4 flex flex-col space-y-3">
-        <button class="btn btn-soft btn-primary">Iniciar sesión</button>
-        <button class="btn btn-primary">Registrarse</button>
+        <a href="/auth/sign-in" class="btn btn-soft btn-primary">
+          Iniciar sesión
+        </a>
+        <a href="/auth/sign-up" class="btn btn-primary"> Registrarse </a>
       </div>
     </div>
   </div>
