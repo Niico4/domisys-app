@@ -36,7 +36,7 @@ const SignInForm = () => {
       console.log('Datos enviados', response);
       toast.success('Sesión iniciada');
       setTimeout(() => {
-        navigate('/home', { replace: true });
+        navigate('/', { replace: true });
       }, 2000);
 
       reset();
