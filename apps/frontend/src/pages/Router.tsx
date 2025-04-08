@@ -28,8 +28,8 @@ export const router = createBrowserRouter(
       </Route>
 
       <Route path="/" element={<Layout />}>
-        <Route path={`${paths.home}`} element={<HomePage />} />
-        <Route path={`${paths.shoppingCart}`} element={<ShoppingCartPage />} />
+        <Route path={paths.home} element={<HomePage />} />
+        <Route path={paths.shoppingCart} element={<ShoppingCartPage />} />
       </Route>
     </>,
   ),
