@@ -7,8 +7,8 @@ import { toast } from 'sonner';
 
 import { signInSchema } from '../validations/auth.schema';
 
-import { authPaths } from '@/constants/routerPaths';
-import { AuthBase } from '@/modules/auth/types/auth.types';
+import { paths } from '@/constants/routerPaths';
+import { AuthBase } from '@/modules/auth/types/auth';
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ const SignInForm = () => {
       <div className="flex items-center justify-end w-full">
         <Link
           className="text-sm text-primary opacity-80 hover:opacity-100 transition-all"
-          to={`/${authPaths.root}/${authPaths.recoverPassword}`}
+          to={`/${paths.root}/${paths.recoverPassword}`}
         >
           ¿Olvidaste tu contraseña?
         </Link>
@@ -87,7 +87,7 @@ const SignInForm = () => {
         ¿No tienes una cuenta?{' '}
         <Link
           className="text-primary underline opacity-80 hover:opacity-100 transition-all"
-          to={`/${authPaths.root}/${authPaths.signUp}`}
+          to={`/${paths.root}/${paths.signUp}`}
         >
           Crear una cuenta
         </Link>

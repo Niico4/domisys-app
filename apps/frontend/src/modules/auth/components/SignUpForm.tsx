@@ -8,9 +8,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { signUpSchema } from '../validations/auth.schema';
-import { SignUpPayload } from '../types/auth.types';
+import { SignUpPayload } from '../types/auth';
 
-import { authPaths } from '@/constants/routerPaths';
+import { paths } from '@/constants/routerPaths';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const SignUpForm = () => {
       console.log('Datos enviados', response);
       toast.success('Cuenta creada');
       setTimeout(() => {
-        navigate(`/${authPaths.root}/${authPaths.signIn}`, { replace: true });
+        navigate(`/${paths.root}/${paths.signIn}`, { replace: true });
       }, 2000);
 
       reset();
@@ -207,7 +207,7 @@ const SignUpForm = () => {
         ¿Ya tienes una cuenta?{' '}
         <Link
           className="text-primary underline opacity-80 hover:opacity-100 transition-all"
-          to={`/${authPaths.root}/${authPaths.signIn}`}
+          to={`/${paths.root}/${paths.signIn}`}
         >
           Iniciar sesión
         </Link>

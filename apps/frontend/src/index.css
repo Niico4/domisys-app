@@ -21,8 +21,9 @@
 
 body {
   font-family: 'Space Grotesk Variable', sans-serif;
+  color: var(--color-gray);
 
-  background-color: #121620;
+  background-color: #1c243a;
   background-image:
     radial-gradient(
       circle at top,

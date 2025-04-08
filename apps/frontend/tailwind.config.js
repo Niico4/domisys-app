@@ -6,13 +6,17 @@ export default {
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
     './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@heroui/theme/dist/components/(button|card|input|input-otp).js',
+    './node_modules/@heroui/theme/dist/components/(button|card|input|input-otp|chip|number-input|popover).js',
   ],
   theme: {
     extend: {
       colors: {
         primary: 'var(--color-brand-primary)',
         secondary: 'var(--color-brand-secondary)',
+      },
+
+      backgroundColor: {
+        glass: 'var(--color-surface-glass)',
       },
 
       textColor: {

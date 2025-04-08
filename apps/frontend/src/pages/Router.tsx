@@ -9,8 +9,11 @@ import {
 import SignInPage from './auth/SignIn';
 import SignUpPage from './auth/SignUp';
 import RecoverPasswordPage from './auth/RecoverPassword';
+import HomePage from './customer/Home';
+import ShoppingCartPage from './customer/ShoppingCart';
 
-import { authPaths } from '@/constants/routerPaths';
+import { paths } from '@/constants/routerPaths';
+import Layout from '@/components/layout/Layout';
 
 export default function AppRouter() {
   return <RouterProvider router={router} />;
@@ -21,23 +24,26 @@ export const router = createBrowserRouter(
     <>
       <Route
         path="/"
-        element={
-          <Navigate replace to={`/${authPaths.root}/${authPaths.signIn}`} />
-        }
+        element={<Navigate replace to={`/${paths.root}/${paths.signIn}`} />}
       />
-      <Route path={authPaths.root}>
+      <Route path={paths.root}>
         <Route
-          path={`/${authPaths.root}/${authPaths.signIn}`}
+          path={`/${paths.root}/${paths.signIn}`}
           element={<SignInPage />}
         />
         <Route
-          path={`/${authPaths.root}/${authPaths.signUp}`}
+          path={`/${paths.root}/${paths.signUp}`}
           element={<SignUpPage />}
         />
         <Route
-          path={`/${authPaths.root}/${authPaths.recoverPassword}`}
+          path={`/${paths.root}/${paths.recoverPassword}`}
           element={<RecoverPasswordPage />}
         />
+      </Route>
+
+      <Route path="/" element={<Layout />}>
+        <Route path={`${paths.home}`} element={<HomePage />} />
+        <Route path={`${paths.shoppingCart}`} element={<ShoppingCartPage />} />
       </Route>
     </>,
   ),

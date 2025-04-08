@@ -1,6 +1,11 @@
-export const authPaths = {
+export const paths = {
   root: 'auth',
   signIn: 'sign-in',
   signUp: 'sign-up',
   recoverPassword: 'recover-password',
+
+  home: 'home',
+  shoppingCart: 'shopping-cart',
+  orders: 'orders',
+  profile: 'profile',
 };

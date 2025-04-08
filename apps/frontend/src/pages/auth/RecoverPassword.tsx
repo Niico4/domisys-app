@@ -5,14 +5,14 @@ import RecoverPasswordForm from '../../modules/auth/components/RecoverPasswordFo
 import LinkSentView from '@/modules/auth/components/LinkSentView';
 import usePasswordRecovery from '@/hooks/usePasswordRecovery';
 import { AuthLayout } from '@/components/layout/AuthLayout';
-import { authPaths } from '@/constants/routerPaths';
+import { paths } from '@/constants/routerPaths';
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();
   const { email, isLinkSent, handleSubmit } = usePasswordRecovery();
 
   const handleBack = () =>
-    navigate(`/${authPaths.root}/${authPaths.signIn}`, { replace: true });
+    navigate(`/${paths.root}/${paths.signIn}`, { replace: true });
 
   return (
     <AuthLayout
