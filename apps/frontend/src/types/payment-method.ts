@@ -1,10 +1,10 @@
 export interface CreditCardPayment {
   id: string;
   type: 'credit_card';
-  card_holder: string;
-  card_number: string;
+  cardHolder: string;
+  cardNumber: string;
   cvv: string;
-  expiration_date: string;
+  expirationDate: string;
 }
 
 export interface CashPayment {
@@ -16,8 +16,8 @@ export interface CashPayment {
 export interface NequiPayment {
   id: string;
   type: 'nequi';
-  account_holder: string;
-  account_number: string;
+  accountHolder: string;
+  accountNumber: string;
 }
 
 export type PaymentMethod = CreditCardPayment | CashPayment | NequiPayment;

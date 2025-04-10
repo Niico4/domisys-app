@@ -38,7 +38,7 @@ const OrderHeader: FC<OrderCardProps> = ({
 
         <div className="flex items-center gap-2 text-sm text-muted">
           <IconClock stroke={1.5} size={18} />
-          <span>{formatDate(order.created_at)}</span>
+          <span>{formatDate(order.createdAt)}</span>
         </div>
       </div>
 

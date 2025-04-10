@@ -3,7 +3,7 @@ import { Customer } from '@/types/users/customer';
 export const mockCustomer: Customer = {
   id: 'cus_789012',
   name: 'Carlos',
-  lastname: 'Martínez',
+  lastName: 'Martínez',
   email: 'carlos.martinez@example.com',
   phoneNumber: '+573001234567',
   address: {
@@ -16,30 +16,30 @@ export const mockCustomer: Customer = {
     {
       id: 'pm_123',
       type: 'credit_card',
-      card_holder: 'CARLOS MARTINEZ',
-      card_number: '5500005555555555',
+      cardHolder: 'CARLOS MARTINEZ',
+      cardNumber: '5500005555555555',
       cvv: '123',
-      expiration_date: '12/25',
+      expirationDate: '12/25',
     },
     {
       id: 'pm_456',
       type: 'nequi',
-      account_holder: 'Carlos Martínez',
-      account_number: '3101234567',
+      accountHolder: 'Carlos Martínez',
+      accountNumber: '3101234567',
     },
   ],
   orders: [
     {
       id: 'ord_123456',
-      created_at: new Date('2023-05-15T14:30:00'),
+      createdAt: new Date('2023-05-15T14:30:00'),
       customer: {} as Customer, // Se auto-referencia
       paymentMethod: {
         id: 'pm_123',
         type: 'credit_card',
-        card_holder: 'CARLOS MARTINEZ',
-        card_number: '5500005555555555',
+        cardHolder: 'CARLOS MARTINEZ',
+        cardNumber: '5500005555555555',
         cvv: '123',
-        expiration_date: '12/25',
+        expirationDate: '12/25',
       },
       products: [
         {
@@ -64,7 +64,7 @@ export const mockCustomer: Customer = {
         },
       ],
       status: 'delivered',
-      total_amount: 50000,
+      totalAmount: 50000,
     },
   ],
 };

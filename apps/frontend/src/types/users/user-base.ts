@@ -1,7 +1,7 @@
 export interface UserBase {
   id: string;
   name: string;
-  lastname: string;
+  lastName: string;
   email: string;
   phoneNumber: string;
 }

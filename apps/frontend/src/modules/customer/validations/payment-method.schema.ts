@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const creditCardSchema = z.object({
-  card_number: z
+  cardNumber: z
     .string()
     .min(1, 'El número de tarjeta es requerido')
     .transform((val) => val.replace(/\s+/g, ''))
@@ -9,13 +9,13 @@ export const creditCardSchema = z.object({
       message: 'El número de tarjeta debe tener exactamente 16 dígitos',
     }),
 
-  card_holder: z
+  cardHolder: z
     .string()
     .min(1, 'El nombre del titular es requerido')
     .max(50, 'El nombre no puede exceder 50 caracteres')
     .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, 'Solo se permiten letras y espacios'),
 
-  expiration_date: z
+  expirationDate: z
     .string()
     .min(1, 'La fecha de expiración es requerida')
     .regex(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/, 'Formato inválido. Use MM/AA')
@@ -44,7 +44,7 @@ export const creditCardSchema = z.object({
 });
 
 export const nequiSchema = z.object({
-  account_number: z
+  accountNumber: z
     .string()
     .min(1, 'El número de teléfono es requerido')
     .transform((val) => val.replace(/\s+/g, ''))
@@ -57,7 +57,7 @@ export const nequiSchema = z.object({
     .refine((val) => /^\d{10}$/.test(val), {
       message: 'Solo se permiten números',
     }),
-  account_holder: z
+  accountHolder: z
     .string()
     .min(1, 'El nombre del titular es requerido')
     .max(50, 'El nombre no puede exceder 50 caracteres')

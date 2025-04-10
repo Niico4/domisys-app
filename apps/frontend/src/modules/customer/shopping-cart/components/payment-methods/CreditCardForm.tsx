@@ -29,35 +29,35 @@ const CreditCardForm: FC<PaymentMethodsBaseProps> = ({
   } = useForm<CreditCardType>({
     resolver: zodResolver(creditCardSchema),
     defaultValues: {
-      card_holder: '',
-      card_number: '',
-      expiration_date: '',
+      cardHolder: '',
+      cardNumber: '',
+      expirationDate: '',
       cvv: '',
     },
   });
 
-  const cardNumberValue = watch('card_number');
-  const expiryDateValue = watch('expiration_date');
+  const cardNumberValue = watch('cardNumber');
+  const expiryDateValue = watch('expirationDate');
 
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formattedValue = formatCardNumber(e.target.value);
-    setValue('card_number', formattedValue);
-    trigger('card_number');
+    setValue('cardNumber', formattedValue);
+    trigger('cardNumber');
   };
 
   const handleExpiryDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formattedValue = formatExpiryDate(e.target.value);
-    setValue('expiration_date', formattedValue);
-    trigger('expiration_date');
+    setValue('expirationDate', formattedValue);
+    trigger('expirationDate');
   };
 
   const onSubmit = (data: CreditCardType) => {
     const newMethod: PaymentMethod = {
       id: crypto.randomUUID(),
       type: 'credit_card',
-      card_number: data.card_number.replace(/\s+/g, ''),
-      card_holder: data.card_holder.trim(),
-      expiration_date: data.expiration_date,
+      cardNumber: data.cardNumber.replace(/\s+/g, ''),
+      cardHolder: data.cardHolder.trim(),
+      expirationDate: data.expirationDate,
       cvv: data.cvv,
     };
 
@@ -79,17 +79,17 @@ const CreditCardForm: FC<PaymentMethodsBaseProps> = ({
         label="Nombre en la tarjeta"
         placeholder="Juan Perez"
         isRequired
-        isInvalid={!!errors.card_holder}
-        errorMessage={errors.card_holder?.message?.toString()}
-        {...register('card_holder')}
+        isInvalid={!!errors.cardHolder}
+        errorMessage={errors.cardHolder?.message?.toString()}
+        {...register('cardHolder')}
         autoComplete="cc-name"
       />
       <Input
         label="Número de tarjeta"
         placeholder="1234 5678 9012 3456"
         isRequired
-        isInvalid={!!errors.card_number}
-        errorMessage={errors.card_number?.message?.toString()}
+        isInvalid={!!errors.cardNumber}
+        errorMessage={errors.cardNumber?.message?.toString()}
         value={cardNumberValue}
         onChange={handleCardNumberChange}
         maxLength={19} // 16 dígitos + 3 espacios
@@ -101,8 +101,8 @@ const CreditCardForm: FC<PaymentMethodsBaseProps> = ({
           label="Fecha expiración (MM/AA)"
           placeholder="MM/AA"
           isRequired
-          isInvalid={!!errors.expiration_date}
-          errorMessage={errors.expiration_date?.message?.toString()}
+          isInvalid={!!errors.expirationDate}
+          errorMessage={errors.expirationDate?.message?.toString()}
           value={expiryDateValue}
           onChange={handleExpiryDateChange}
           maxLength={5} // MM/AA

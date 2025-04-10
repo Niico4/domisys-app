@@ -22,7 +22,7 @@ const OrderSummary = ({ order }: OrderCardProps) => {
           <span className="text-sm font-medium">Total</span>
         </div>
         <p className="text-custom-neutral text-center text-lg font-medium opacity-85">
-          ${order.total_amount.toLocaleString()}
+          ${order.totalAmount.toLocaleString()}
         </p>
       </div>
     </div>

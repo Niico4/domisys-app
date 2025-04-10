@@ -5,22 +5,22 @@ import { Delivery } from '@/types/users/delivery';
 export const mockDelivery: Delivery = {
   id: 'del_345678',
   name: 'Andrés',
-  lastname: 'Gómez',
+  lastName: 'Gómez',
   email: 'andres.gomez@deliveryapp.com',
   phoneNumber: '+573005678901',
   orders: [
     {
       id: 'ord_123456',
-      created_at: new Date('2023-05-15T14:30:00'),
+      createdAt: new Date('2023-05-15T14:30:00'),
       customer: mockCustomer,
       delivery: {} as Delivery, // Se auto-referencia
       paymentMethod: {
         id: 'pm_123',
         type: 'credit_card',
-        card_holder: 'CARLOS MARTINEZ',
-        card_number: '5500005555555555',
+        cardHolder: 'CARLOS MARTINEZ',
+        cardNumber: '5500005555555555',
         cvv: '123',
-        expiration_date: '12/25',
+        expirationDate: '12/25',
       },
       products: [
         {
@@ -35,16 +35,16 @@ export const mockDelivery: Delivery = {
         },
       ],
       status: 'delivered',
-      total_amount: 8500,
+      totalAmount: 8500,
     },
     {
       id: 'ORD_78901',
-      created_at: new Date('2023-05-16T18:45:00'),
+      createdAt: new Date('2023-05-16T18:45:00'),
       customer: {
         ...mockCustomer,
         id: 'cus_345678',
         name: 'María',
-        lastname: 'Rodríguez',
+        lastName: 'Rodríguez',
       },
       paymentMethod: {
         id: 'pm_789',
@@ -94,7 +94,7 @@ export const mockDelivery: Delivery = {
         },
       ],
       status: 'delivering',
-      total_amount: 92600,
+      totalAmount: 92600,
     },
   ],
 };
