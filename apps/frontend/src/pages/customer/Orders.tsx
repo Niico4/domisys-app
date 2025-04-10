@@ -20,7 +20,7 @@ const OrdersPage = () => {
       {orders.length === 0 ? (
         <p className="text-gray-500">Aún no has realizado ningún pedido.</p>
       ) : (
-        <article className="flex-center flex-wrap gap-5">
+        <article className="flex items-start justify-center flex-wrap gap-5">
           {sortedOrders.map((order) => (
             <OrderCard key={order.id} order={order} />
           ))}
