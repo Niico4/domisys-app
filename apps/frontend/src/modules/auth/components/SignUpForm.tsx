@@ -11,6 +11,7 @@ import { signUpSchema } from '../validations/auth.schema';
 import { SignUpPayload } from '../types/auth';
 
 import { paths } from '@/constants/routerPaths';
+import useAuth from '@/hooks/useAuth';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -39,6 +40,8 @@ const SignUpForm = () => {
 
   const isDelivery = watch('isDelivery');
 
+  const { signUp } = useAuth();
+
   const onSubmit = async (data: SignUpPayload) => {
     try {
       if (data.isDelivery) {
@@ -51,34 +54,32 @@ const SignUpForm = () => {
         }
       }
 
-      const response = {
+      const newUser = {
+        id: crypto.randomUUID(),
         name: data.name,
         lastName: data.lastName,
         email: data.email,
         phoneNumber: data.phoneNumber,
         address: data.address,
         password: data.password,
+        confirmPassword: data.confirmPassword,
         isDelivery: data.isDelivery,
-        ...(data.isDelivery && { invitationCode: data.invitationCode }),
+        ...(data.isDelivery && { invitation_code: data.invitationCode }),
       };
 
-      // eslint-disable-next-line no-console
-      console.log('Datos enviados', response);
-      toast.success('Cuenta creada');
+      signUp(newUser);
+      toast.success(`Bienvenido ${newUser.name}`);
       setTimeout(() => {
-        navigate(`/${paths.root}/${paths.signIn}`, { replace: true });
+        navigate(`/`, { replace: true });
       }, 2000);
 
       reset();
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-      toast.error('Error al crear la cuenta');
+      toast.error(`Error al crear la cuenta - ${error}`);
     }
   };
 
   const validateInvitationCode = async (code: string): Promise<boolean> => {
-    // Implementación real iría aquí
     return code === '12345678';
   };
 
@@ -207,7 +208,7 @@ const SignUpForm = () => {
         ¿Ya tienes una cuenta?{' '}
         <Link
           className="text-primary underline opacity-80 hover:opacity-100 transition-all"
-          to={`/${paths.root}/${paths.signIn}`}
+          to={`/${paths.authRoot}/${paths.signIn}`}
         >
           Iniciar sesión
         </Link>

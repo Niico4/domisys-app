@@ -12,7 +12,7 @@ const ForgotPasswordPage = () => {
   const { email, isLinkSent, handleSubmit } = usePasswordRecovery();
 
   const handleBack = () =>
-    navigate(`/${paths.root}/${paths.signIn}`, { replace: true });
+    navigate(`/${paths.authRoot}/${paths.signIn}`, { replace: true });
 
   return (
     <AuthLayout
