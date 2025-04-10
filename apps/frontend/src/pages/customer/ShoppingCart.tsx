@@ -26,10 +26,10 @@ import { usePaymentMethods } from '@/modules/customer/hooks/usePaymentMethods';
 import { paths } from '@/constants/routerPaths';
 import { SHOPPING_COST } from '@/constants/mock/mock-shopping-cart';
 import { formatCardNumber } from '@/utils/format';
-import { mockUser } from '@/constants/mock/mock-customer';
 import { mockDelivery } from '@/constants/mock/mock-delivery';
 import { Order } from '@/types/order';
 import { PaymentMethod } from '@/types/payment-method';
+import { mockCustomer } from '@/constants/mock/mock-customer';
 
 const ShoppingCartPage = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -157,7 +157,7 @@ const ShoppingCartPage = () => {
 
       const newOrder: Order = {
         id: generateOrderId(),
-        customer: mockUser,
+        customer: mockCustomer,
         delivery: mockDelivery,
         products: cart,
         paymentMethod,

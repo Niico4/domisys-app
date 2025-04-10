@@ -1,15 +1,70 @@
-import { Customer } from '@/store/useOrders.store';
+import { Customer } from '@/types/users/customer';
 
-export const mockUser: Customer = {
-  id: 'user-001',
-  name: 'Karol',
-  lastname: 'Herrera',
-  email: 'karol.herrera@example.com',
-  phoneNumber: '1234567890',
+export const mockCustomer: Customer = {
+  id: 'cus_789012',
+  name: 'Carlos',
+  lastname: 'Martínez',
+  email: 'carlos.martinez@example.com',
+  phoneNumber: '+573001234567',
   address: {
-    id: 'address-001',
-    street: 'Calle 123',
-    details: 'Departamento 456',
-    neighborhood: 'Barrio 789',
+    id: 'add_123',
+    street: 'Carrera 45 # 26-85',
+    neighborhood: 'El Poblado',
+    details: 'Edificio Altos del Poblado, apto 302',
   },
+  paymentMethods: [
+    {
+      id: 'pm_123',
+      type: 'credit_card',
+      card_holder: 'CARLOS MARTINEZ',
+      card_number: '5500005555555555',
+      cvv: '123',
+      expiration_date: '12/25',
+    },
+    {
+      id: 'pm_456',
+      type: 'nequi',
+      account_holder: 'Carlos Martínez',
+      account_number: '3101234567',
+    },
+  ],
+  orders: [
+    {
+      id: 'ord_123456',
+      created_at: new Date('2023-05-15T14:30:00'),
+      customer: {} as Customer, // Se auto-referencia
+      paymentMethod: {
+        id: 'pm_123',
+        type: 'credit_card',
+        card_holder: 'CARLOS MARTINEZ',
+        card_number: '5500005555555555',
+        cvv: '123',
+        expiration_date: '12/25',
+      },
+      products: [
+        {
+          id: '1',
+          productName: 'Banano Criollo',
+          category: 'Frutas y Verduras',
+          measure: '1 lb',
+          price: 2500,
+          stock: 100,
+          image: '/images/banano.webp',
+          quantity: 10,
+        },
+        {
+          id: '2',
+          productName: 'Aguacate Hass',
+          category: 'Frutas y Verduras',
+          measure: 'Unidad',
+          price: 5000,
+          stock: 1000,
+          image: '/images/aguacate.webp',
+          quantity: 15,
+        },
+      ],
+      status: 'delivered',
+      total_amount: 50000,
+    },
+  ],
 };
