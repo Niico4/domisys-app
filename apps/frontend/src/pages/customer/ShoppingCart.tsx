@@ -1,4 +1,5 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   IconCash,
   IconCreditCard,
@@ -12,90 +13,100 @@ import { Card } from '@heroui/card';
 import { Checkbox } from '@heroui/checkbox';
 import { Popover, PopoverTrigger, PopoverContent } from '@heroui/popover';
 
-import { useCartStore } from '@/store/useCart.store';
 import CreditCardForm from '@/modules/customer/shopping-cart/components/payment-methods/CreditCardForm';
 import NequiForm from '@/modules/customer/shopping-cart/components/payment-methods/NequiForm';
 import CashForm from '@/modules/customer/shopping-cart/components/payment-methods/CashForm';
 import ProductCartCard from '@/modules/customer/shopping-cart/components/ProductCartCard';
-import {
-  PaymentMethodType,
-  PaymentMethod,
-} from '@/modules/customer/types/payment';
 import OrderSummary from '@/modules/customer/shopping-cart/components/OrderSummary';
 import OrderConfirmation from '@/modules/customer/shopping-cart/components/OrderConfirmation';
-
-const SHOPPING_COST = 3000;
+import { generateOrderId } from '@/utils/id-generator';
+import useOrders from '@/hooks/useOrders';
+import useShoppingCart from '@/hooks/useShoppingCart';
+import { usePaymentMethods } from '@/modules/customer/hooks/usePaymentMethods';
+import { paths } from '@/constants/routerPaths';
+import { SHOPPING_COST } from '@/constants/mock/mock-shopping-cart';
+import { formatCardNumber } from '@/utils/format';
+import { mockUser } from '@/constants/mock/mock-customer';
+import { mockDelivery } from '@/constants/mock/mock-delivery';
+import { Order } from '@/types/order';
+import { PaymentMethod } from '@/types/payment-method';
 
 const ShoppingCartPage = () => {
-  const [paymentMethodType, setPaymentMethodType] =
-    useState<PaymentMethodType | null>(null);
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState<PaymentMethod | null>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([
+  const [hasConfirmed, setHasConfirmed] = useState(false);
+  const navigate = useNavigate();
+
+  const {
+    handleDeleteMethod,
+    handleSelectMethod,
+    handleSelectPaymentMethod,
+    paymentMethodType,
+    paymentMethods,
+    selectedPaymentMethod,
+    setPaymentMethods,
+    setSelectedPaymentMethod,
+    setShowAddForm,
+    showAddForm,
+  } = usePaymentMethods([
     {
       id: '1',
-      type: 'credit',
-      details: {
-        cardNumber: '4242424242424242',
-        cardHolder: 'Juan Perez',
-        expiryDate: '12/25',
-        cvv: '123',
-      },
+      type: 'credit_card',
+      card_number: '4242424242424242',
+      card_holder: 'Juan Perez',
+      expiration_date: '12/25',
+      cvv: '123',
     },
     {
       id: '2',
       type: 'nequi',
-      details: {
-        phoneNumber: '3101234567',
-      },
+      account_number: '3101234567',
+      account_holder: 'Juan Perez',
     },
   ]);
 
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCartStore();
+  const {
+    cart,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    totalItems,
+    subtotal,
+  } = useShoppingCart();
+  const { addOrder } = useOrders();
 
-  const { subtotal, totalItems, total } = useMemo(() => {
-    const subtotal = cart.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0,
-    );
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const total = subtotal + SHOPPING_COST;
-    return { subtotal, totalItems, total };
-  }, [cart]);
+  const total = useMemo(() => subtotal + SHOPPING_COST, [subtotal]);
 
-  const handleSelectMethod = useCallback(
-    (type: PaymentMethodType, e?: React.MouseEvent) => {
-      e?.stopPropagation();
-      setPaymentMethodType(type);
-      setShowAddForm(false);
-      setSelectedPaymentMethod(null);
-    },
-    [],
-  );
-
-  const handleAddClick = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleAddClick = () => {
     setShowAddForm(true);
     setSelectedPaymentMethod(null);
-  }, []);
+  };
 
-  const handleDeleteMethod = useCallback((id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setPaymentMethods((prev) => prev.filter((method) => method.id !== id));
-    setSelectedPaymentMethod((prev) => (prev?.id === id ? null : prev));
-    toast.success('Método de pago eliminado');
-  }, []);
+  const handlePopoverOpenChange = useCallback(
+    (open: boolean) => {
+      if (!open && hasConfirmed) {
+        clearCart();
+        navigate(`/${paths.orders}`);
+      }
 
-  const handleSelectPaymentMethod = useCallback(
-    (method: PaymentMethod, e: React.ChangeEvent<HTMLInputElement>) => {
-      e.stopPropagation();
-      setSelectedPaymentMethod(e.target.checked ? method : null);
-      setShowAddForm(false);
+      if (!open) {
+        setIsPopoverOpen(false);
+        return;
+      }
+      if (open && !selectedPaymentMethod && paymentMethodType !== 'cash') {
+        toast.warning('Por favor selecciona un método de pago');
+        return;
+      }
+
+      setIsPopoverOpen(open);
     },
-    [],
+    [clearCart, hasConfirmed, selectedPaymentMethod, paymentMethodType],
   );
+
+  useEffect(() => {
+    if (!isPopoverOpen) {
+      setHasConfirmed(false);
+    }
+  }, [isPopoverOpen]);
 
   const handleQuantityChange = useCallback(
     (id: string, newQuantity: number) => {
@@ -118,28 +129,71 @@ const ShoppingCartPage = () => {
     [cart, removeFromCart, updateQuantity],
   );
 
-  const handleContinue = useCallback(async () => {
-    if (!selectedPaymentMethod && paymentMethodType !== 'cash') {
-      toast.warning('Por favor selecciona un método de pago');
-      return false; // Indica que no se pudo completar
+  const handleContinue = useCallback(async (): Promise<string | null> => {
+    try {
+      if (!selectedPaymentMethod && paymentMethodType !== 'cash') {
+        toast.warning('Por favor selecciona un método de pago');
+        return null;
+      }
+
+      if (!paymentMethodType) {
+        toast.error('Tipo de método de pago no definido');
+        return null;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      let paymentMethod: PaymentMethod;
+
+      if (selectedPaymentMethod) {
+        paymentMethod = selectedPaymentMethod;
+      } else {
+        paymentMethod = {
+          id: `cash_${crypto.randomUUID()}`,
+          type: 'cash',
+          amount: total,
+        };
+      }
+
+      const newOrder: Order = {
+        id: generateOrderId(),
+        customer: mockUser,
+        delivery: mockDelivery,
+        products: cart,
+        paymentMethod,
+        status: 'pending',
+        created_at: new Date(),
+        total_amount: total,
+      };
+
+      addOrder(newOrder);
+      setHasConfirmed(true);
+
+      return newOrder.id;
+    } catch (error) {
+      toast.error(`Error al procesar el pedido ${error}`);
+      return null;
     }
+  }, [selectedPaymentMethod, paymentMethodType, cart, total, addOrder]);
 
-    // Simular proceso de pago
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    return true; // pago exitoso
-  }, [selectedPaymentMethod, paymentMethodType]);
-
-  // Función para manejar el cierre después de mostrar la factura
-  const handleCloseAfterPayment = useCallback(() => {
+  const handleCloseAfterPayment = () => {
     setIsPopoverOpen(false);
     clearCart();
-  }, [clearCart]);
+    navigate(`/${paths.orders}`);
+  };
 
-  const formatCardNumber = useCallback((number: string = '') => {
-    return number.replace(/(\d{4})(?=\d)/g, '$1 ');
-  }, []);
+  const handleClearCart = () => {
+    toast('¿Vaciar el carrito?', {
+      action: {
+        label: 'Confirmar',
+        onClick: () => clearCart(),
+      },
+    });
+  };
 
   const renderPaymentMethodForm = useCallback(() => {
+    if (!paymentMethodType) return null;
+
     const commonProps = {
       setPaymentMethods,
       setSelectedPaymentMethod,
@@ -147,7 +201,7 @@ const ShoppingCartPage = () => {
     };
 
     switch (paymentMethodType) {
-      case 'credit':
+      case 'credit_card':
         return <CreditCardForm {...commonProps} />;
       case 'nequi':
         return <NequiForm paymentMethods={paymentMethods} {...commonProps} />;
@@ -211,8 +265,8 @@ const ShoppingCartPage = () => {
                   {/* Tarjeta de crédito/débito */}
                   <div
                     className={`px-4 py-3 rounded-lg transition-colors 
-                      ${paymentMethodType === 'credit' ? 'bg-primary/10 border border-primary/20' : 'bg-white/[0.04] hover:bg-white/[0.08]'}`}
-                    onClick={(e) => handleSelectMethod('credit', e)}
+                      ${paymentMethodType === 'credit_card' ? 'bg-primary/10 border border-primary/20' : 'bg-white/[0.04] hover:bg-white/[0.08]'}`}
+                    onClick={() => handleSelectMethod('credit_card')}
                   >
                     <div className="flex items-center gap-3 cursor-pointer">
                       <IconCreditCard size={20} />
@@ -221,16 +275,16 @@ const ShoppingCartPage = () => {
                       </span>
                     </div>
 
-                    {paymentMethodType === 'credit' && (
+                    {paymentMethodType === 'credit_card' && (
                       <div
                         className="mt-3"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        {paymentMethods.filter((m) => m.type === 'credit')
+                        {paymentMethods.filter((m) => m.type === 'credit_card')
                           .length > 0 ? (
                           <>
                             {paymentMethods
-                              .filter((m) => m.type === 'credit')
+                              .filter((m) => m.type === 'credit_card')
                               .map((method) => (
                                 <div
                                   key={method.id}
@@ -241,16 +295,15 @@ const ShoppingCartPage = () => {
                                       isSelected={
                                         selectedPaymentMethod?.id === method.id
                                       }
-                                      onChange={(e) =>
+                                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                      onChange={(e: any) =>
                                         handleSelectPaymentMethod(method, e)
                                       }
                                     />
                                     <div>
-                                      <p>{method.details.cardHolder}</p>
+                                      <p>{method.card_holder}</p>
                                       <p className="text-sm text-gray-400">
-                                        {formatCardNumber(
-                                          method.details.cardNumber,
-                                        )}
+                                        {formatCardNumber(method.card_number)}
                                       </p>
                                     </div>
                                   </div>
@@ -259,8 +312,8 @@ const ShoppingCartPage = () => {
                                     variant="light"
                                     color="danger"
                                     size="sm"
-                                    onClick={(e) =>
-                                      handleDeleteMethod(method.id, e)
+                                    onPress={() =>
+                                      handleDeleteMethod(method.id)
                                     }
                                   >
                                     <IconX size={16} />
@@ -272,7 +325,7 @@ const ShoppingCartPage = () => {
                               size="sm"
                               className="mt-2"
                               startContent={<IconPlus size={16} />}
-                              onClick={handleAddClick}
+                              onPress={handleAddClick}
                             >
                               Agregar nueva tarjeta
                             </Button>
@@ -287,7 +340,7 @@ const ShoppingCartPage = () => {
                               size="sm"
                               className="mt-2"
                               startContent={<IconPlus size={16} />}
-                              onClick={handleAddClick}
+                              onPress={handleAddClick}
                             >
                               Agregar nueva tarjeta
                             </Button>
@@ -303,7 +356,7 @@ const ShoppingCartPage = () => {
                   <div
                     className={`px-4 py-3 rounded-lg transition-colors 
                       ${paymentMethodType === 'cash' ? 'bg-primary/10 border border-primary/20' : 'bg-white/[0.04] hover:bg-white/[0.08]'}`}
-                    onClick={(e) => handleSelectMethod('cash', e)}
+                    onClick={() => handleSelectMethod('cash')}
                   >
                     <div className="flex items-center gap-3 cursor-pointer">
                       <IconCash size={20} />
@@ -317,11 +370,11 @@ const ShoppingCartPage = () => {
                   <div
                     className={`px-4 py-3 rounded-lg transition-colors 
                       ${paymentMethodType === 'nequi' ? 'bg-primary/10 border border-primary/20' : 'bg-white/[0.04] hover:bg-white/[0.08]'}`}
-                    onClick={(e) => handleSelectMethod('nequi', e)}
+                    onClick={() => handleSelectMethod('nequi')}
                   >
                     <div className="flex items-center gap-3 cursor-pointer">
                       <IconTransfer size={20} />
-                      <span className="font-medium">Nequi o transferencia</span>
+                      <span className="font-medium">Nequi</span>
                     </div>
 
                     {paymentMethodType === 'nequi' && (
@@ -344,14 +397,15 @@ const ShoppingCartPage = () => {
                                       isSelected={
                                         selectedPaymentMethod?.id === method.id
                                       }
-                                      onChange={(e) =>
+                                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                      onChange={(e: any) =>
                                         handleSelectPaymentMethod(method, e)
                                       }
                                     />
                                     <div>
-                                      <p>Nequi</p>
+                                      <p>{method.account_holder}</p>
                                       <p className="text-sm text-gray-400">
-                                        {method.details.phoneNumber}
+                                        {method.account_number}
                                       </p>
                                     </div>
                                   </div>
@@ -360,8 +414,8 @@ const ShoppingCartPage = () => {
                                     variant="light"
                                     color="danger"
                                     size="sm"
-                                    onClick={(e) =>
-                                      handleDeleteMethod(method.id, e)
+                                    onPress={() =>
+                                      handleDeleteMethod(method.id)
                                     }
                                   >
                                     <IconX size={16} />
@@ -373,7 +427,7 @@ const ShoppingCartPage = () => {
                               size="sm"
                               className="mt-2"
                               startContent={<IconPlus size={16} />}
-                              onClick={handleAddClick}
+                              onPress={handleAddClick}
                             >
                               Agregar nuevo número
                             </Button>
@@ -388,7 +442,7 @@ const ShoppingCartPage = () => {
                               size="sm"
                               className="mt-2"
                               startContent={<IconPlus size={16} />}
-                              onClick={handleAddClick}
+                              onPress={handleAddClick}
                             >
                               Agregar nuevo número
                             </Button>
@@ -407,28 +461,21 @@ const ShoppingCartPage = () => {
                   variant="flat"
                   color="danger"
                   radius="sm"
-                  onPress={clearCart}
+                  onPress={handleClearCart}
                 >
                   Vaciar carrito
                 </Button>
 
                 <Popover
                   isOpen={isPopoverOpen}
-                  onOpenChange={setIsPopoverOpen}
+                  onOpenChange={handlePopoverOpenChange}
                   placement="top-end"
                   backdrop="opaque"
                   radius="sm"
                   size="lg"
                 >
                   <PopoverTrigger>
-                    <Button
-                      color="primary"
-                      radius="sm"
-                      disabled={
-                        !paymentMethodType ||
-                        (!selectedPaymentMethod && paymentMethodType !== 'cash')
-                      }
-                    >
+                    <Button color="primary" radius="sm">
                       Continuar (${total.toLocaleString()})
                     </Button>
                   </PopoverTrigger>
@@ -440,10 +487,6 @@ const ShoppingCartPage = () => {
                       paymentMethodType={paymentMethodType}
                       onConfirm={async () => {
                         const success = await handleContinue();
-                        if (success) {
-                          toast.success('¡Pago realizado con éxito!');
-                          // No cerramos inmediatamente para mostrar la factura
-                        }
                         return success;
                       }}
                       onCancel={() => {

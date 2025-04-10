@@ -1,36 +1,21 @@
 import { z } from 'zod';
 
 export const creditCardSchema = z.object({
-  cardNumber: z
+  card_number: z
     .string()
     .min(1, 'El número de tarjeta es requerido')
     .transform((val) => val.replace(/\s+/g, ''))
     .refine((val) => /^\d{16}$/.test(val), {
       message: 'El número de tarjeta debe tener exactamente 16 dígitos',
-    })
-    .refine(
-      (val) => {
-        const firstDigit = val[0];
-        const firstTwoDigits = val.substring(0, 2);
+    }),
 
-        // Visa comienza con 4, Mastercard con 51-55
-        return (
-          firstDigit === '4' ||
-          (firstTwoDigits >= '51' && firstTwoDigits <= '55')
-        );
-      },
-      {
-        message: 'Solo aceptamos Visa (4) y Mastercard (51-55)',
-      },
-    ),
-
-  cardHolder: z
+  card_holder: z
     .string()
     .min(1, 'El nombre del titular es requerido')
     .max(50, 'El nombre no puede exceder 50 caracteres')
     .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, 'Solo se permiten letras y espacios'),
 
-  expiryDate: z
+  expiration_date: z
     .string()
     .min(1, 'La fecha de expiración es requerida')
     .regex(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/, 'Formato inválido. Use MM/AA')
@@ -59,10 +44,10 @@ export const creditCardSchema = z.object({
 });
 
 export const nequiSchema = z.object({
-  phoneNumber: z
+  account_number: z
     .string()
     .min(1, 'El número de teléfono es requerido')
-    .transform((val) => val.replace(/\s+/g, '')) // Elimina espacios
+    .transform((val) => val.replace(/\s+/g, ''))
     .refine((val) => /^3\d+$/.test(val), {
       message: 'Debe comenzar con 3',
     })
@@ -72,6 +57,11 @@ export const nequiSchema = z.object({
     .refine((val) => /^\d{10}$/.test(val), {
       message: 'Solo se permiten números',
     }),
+  account_holder: z
+    .string()
+    .min(1, 'El nombre del titular es requerido')
+    .max(50, 'El nombre no puede exceder 50 caracteres')
+    .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, 'Solo se permiten letras y espacios'),
 });
 
 export type CreditCardType = z.infer<typeof creditCardSchema>;

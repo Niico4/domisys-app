@@ -32,18 +32,14 @@ const SignInForm = () => {
         password: data.password,
       };
 
-      // eslint-disable-next-line no-console
-      console.log('Datos enviados', response);
-      toast.success('Sesión iniciada');
+      toast.success(`Sesión iniciada - ${response.email}`);
       setTimeout(() => {
         navigate('/', { replace: true });
       }, 2000);
 
       reset();
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-      toast.error('Error al iniciar sesión');
+      toast.error(`Error al iniciar sesión - ${error}`);
     }
   };
   return (

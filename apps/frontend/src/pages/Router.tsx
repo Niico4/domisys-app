@@ -10,6 +10,7 @@ import SignUpPage from './auth/SignUp';
 import RecoverPasswordPage from './auth/RecoverPassword';
 import HomePage from './customer/Home';
 import ShoppingCartPage from './customer/ShoppingCart';
+import OrdersPage from './customer/Orders';
 
 import { paths } from '@/constants/routerPaths';
 import Layout from '@/components/layout/Layout';
@@ -30,6 +31,7 @@ export const router = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route path={paths.home} element={<HomePage />} />
         <Route path={paths.shoppingCart} element={<ShoppingCartPage />} />
+        <Route path={paths.orders} element={<OrdersPage />} />
       </Route>
     </>,
   ),

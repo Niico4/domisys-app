@@ -7,6 +7,7 @@ interface Props {
   total: number;
   totalItems: number;
   onClose: () => void;
+  orderID: string;
 }
 
 const Receipt: FC<Props> = ({
@@ -14,6 +15,7 @@ const Receipt: FC<Props> = ({
   onClose,
   total,
   totalItems,
+  orderID,
 }) => {
   return (
     <div className="p-5 flex flex-col gap-6 w-[380px]">
@@ -28,9 +30,7 @@ const Receipt: FC<Props> = ({
       <div className="space-y-4">
         <div className="flex justify-between">
           <span className="text-gray-300">N° Orden:</span>
-          <span className="font-mono">
-            #{Math.random().toString(36).substring(2, 10).toUpperCase()}
-          </span>
+          <span className="font-mono">{orderID}</span>
         </div>
 
         <div className="flex justify-between items-center pb-3 border-b border-white/10">
@@ -55,7 +55,11 @@ const Receipt: FC<Props> = ({
         <p className="text-sm text-gray-400 text-center">
           Guarda esta información para cualquier reclamo
         </p>
-        <Button color="primary" onPress={onClose} className="mt-2">
+        <Button
+          color="primary"
+          onPress={onClose}
+          className="mt-2 text-[#121212]"
+        >
           Cerrar
         </Button>
       </div>

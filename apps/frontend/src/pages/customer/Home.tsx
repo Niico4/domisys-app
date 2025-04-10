@@ -5,7 +5,7 @@ import { IconSearch } from '@tabler/icons-react';
 
 import { productsMock } from '@/constants/mock/mock-products';
 import ProductCard from '@/modules/customer/home/components/ProductCard';
-import { useCartStore } from '@/store/useCart.store';
+import useShoppingCart from '@/hooks/useShoppingCart';
 
 const categoryProducts = [
   'Todos',
@@ -19,7 +19,7 @@ const categoryProducts = [
 const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
-  const addToCart = useCartStore((state) => state.addToCart);
+  const { addToCart } = useShoppingCart();
 
   const filteredProducts = productsMock.filter((product) => {
     const categoryMatch =
