@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { Icon } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
 
-import { useCartStore } from '@/store/useCart.store';
+import useShoppingCart from '@/hooks/useShoppingCart';
 
 const ItemNavbar = ({
   label,
@@ -15,7 +15,7 @@ const ItemNavbar = ({
   href: string;
   badge?: boolean;
 }) => {
-  const { cart } = useCartStore();
+  const { cart } = useShoppingCart();
 
   return (
     <NavLink
@@ -33,7 +33,7 @@ const ItemNavbar = ({
           {isActive && (
             <motion.div
               layoutId="navActiveIndicator"
-              className="absolute inset-0 bg-gray-300/10 rounded-lg"
+              className="absolute inset-0 bg-primary-900 rounded-lg"
               transition={{ type: 'spring', duration: 0.4 }}
             />
           )}

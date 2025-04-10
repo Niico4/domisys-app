@@ -1,22 +1,15 @@
 import { create } from 'zustand';
 import { toast } from 'sonner';
 
-import { CategoryType } from '@/modules/customer/home/types/product';
+import { Product } from '@/types/product';
 
-interface CartItem {
-  id: string;
-  category: CategoryType;
-  image: string;
-  measure: string;
-  price: number;
-  productName: string;
+export interface ProductWithQuantity extends Product {
   quantity: number;
-  stock: number;
 }
 
-interface CartStore {
-  cart: CartItem[];
-  addToCart: (product: Omit<CartItem, 'quantity'>) => void;
+export interface CartStore {
+  cart: ProductWithQuantity[];
+  addToCart: (product: Omit<ProductWithQuantity, 'quantity'>) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;

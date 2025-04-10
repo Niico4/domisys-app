@@ -9,23 +9,23 @@ import {
 } from '@tabler/icons-react';
 import { toast } from 'sonner';
 
-import { PaymentMethod, PaymentMethodType } from '../../types/payment';
-
 import Receipt from './Receipt';
+
+import useShoppingCart from '@/hooks/useShoppingCart';
+import { PaymentMethod, PaymentMethodType } from '@/types/payment-method';
 
 interface OrderConfirmationProps {
   total: number;
   totalItems: number;
   paymentMethod: PaymentMethod | null;
   paymentMethodType: PaymentMethodType | null;
-  onConfirm: () => Promise<boolean>;
+  onConfirm: () => Promise<string | null>;
   onCancel: () => void;
   onClose: () => void;
 }
 
 const OrderConfirmation: FC<OrderConfirmationProps> = ({
   total,
-  totalItems,
   paymentMethod,
   paymentMethodType,
   onConfirm,
@@ -34,33 +34,34 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
 }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [showInvoice, setShowInvoice] = useState(false);
+  const [orderID, setOrderID] = useState<string>('');
+
+  const { totalItems } = useShoppingCart();
 
   const getPaymentMethodDetails = () => {
     if (!paymentMethod && paymentMethodType === 'cash') {
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer">
           <IconCash size={18} className="text-primary" />
           <span>Pago en efectivo</span>
         </div>
       );
     }
 
-    if (paymentMethod?.type === 'credit') {
+    if (paymentMethod?.type === 'credit_card') {
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer">
           <IconCreditCard size={18} className="text-primary" />
-          <span>
-            Tarjeta **** {paymentMethod.details.cardNumber?.slice(-4)}
-          </span>
+          <span>Tarjeta **** {paymentMethod.card_number?.slice(-4)}</span>
         </div>
       );
     }
 
     if (paymentMethod?.type === 'nequi') {
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 cursor-pointer">
           <IconTransfer size={18} className="text-primary" />
-          <span>Nequi: {paymentMethod.details.phoneNumber}</span>
+          <span>Nequi: {paymentMethod.account_number}</span>
         </div>
       );
     }
@@ -71,9 +72,12 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
   const handleConfirm = async () => {
     setIsProcessing(true);
     try {
-      await onConfirm();
-      setShowInvoice(true);
-      toast.success('Pago procesado exitosamente');
+      const success = await onConfirm();
+      if (typeof success === 'string') {
+        setOrderID(success);
+        setShowInvoice(true);
+        toast.success('¡Pedido realizado con éxito!');
+      }
     } catch (error) {
       toast.error(`Error al procesar el pago - ${error}`);
     } finally {
@@ -92,6 +96,7 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
         getPaymentMethodDetails={getPaymentMethodDetails}
         onClose={onClose}
         total={total}
+        orderID={orderID}
         totalItems={totalItems}
       />
     );
@@ -99,7 +104,6 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
 
   return (
     <div className="p-5 flex flex-col gap-6">
-      {/* Encabezado */}
       <div className="flex flex-col gap-1">
         <h3 className="font-bold text-2xl text-white opacity-90">
           Confirmar Pedido
@@ -107,7 +111,6 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
         <div className="h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       </div>
 
-      {/* Detalles del pedido */}
       <ul className="flex flex-col gap-4">
         <li className="flex justify-between items-center pb-3 border-b border-white/10">
           <div className="flex items-center gap-2 text-gray-300">
@@ -134,7 +137,6 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
         </li>
       </ul>
 
-      {/* Botones de acción */}
       <div className="flex gap-3 justify-end pt-2">
         <Button
           variant="flat"
