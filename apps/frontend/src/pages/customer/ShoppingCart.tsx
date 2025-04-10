@@ -51,16 +51,16 @@ const ShoppingCartPage = () => {
     {
       id: '1',
       type: 'credit_card',
-      card_number: '4242424242424242',
-      card_holder: 'Juan Perez',
-      expiration_date: '12/25',
+      cardNumber: '4242424242424242',
+      cardHolder: 'Juan Perez',
+      expirationDate: '12/25',
       cvv: '123',
     },
     {
       id: '2',
       type: 'nequi',
-      account_number: '3101234567',
-      account_holder: 'Juan Perez',
+      accountNumber: '3101234567',
+      accountHolder: 'Juan Perez',
     },
   ]);
 
@@ -162,8 +162,8 @@ const ShoppingCartPage = () => {
         products: cart,
         paymentMethod,
         status: 'pending',
-        created_at: new Date(),
-        total_amount: total,
+        createdAt: new Date(),
+        totalAmount: total,
       };
 
       addOrder(newOrder);
@@ -301,9 +301,9 @@ const ShoppingCartPage = () => {
                                       }
                                     />
                                     <div>
-                                      <p>{method.card_holder}</p>
+                                      <p>{method.cardHolder}</p>
                                       <p className="text-sm text-gray-400">
-                                        {formatCardNumber(method.card_number)}
+                                        {formatCardNumber(method.cardNumber)}
                                       </p>
                                     </div>
                                   </div>
@@ -403,9 +403,9 @@ const ShoppingCartPage = () => {
                                       }
                                     />
                                     <div>
-                                      <p>{method.account_holder}</p>
+                                      <p>{method.accountHolder}</p>
                                       <p className="text-sm text-gray-400">
-                                        {method.account_number}
+                                        {method.accountNumber}
                                       </p>
                                     </div>
                                   </div>

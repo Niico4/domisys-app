@@ -29,16 +29,15 @@ const NequiForm: FC<NequiFormProps> = ({
   } = useForm<NequiType>({
     resolver: zodResolver(nequiSchema),
     defaultValues: {
-      account_holder: '',
-      account_number: '',
+      accountHolder: '',
+      accountNumber: '',
     },
   });
 
   const onSubmitNequi = (data: NequiType) => {
     const alreadyExists = paymentMethods.some(
       (method) =>
-        method.type === 'nequi' &&
-        method.account_number === data.account_number,
+        method.type === 'nequi' && method.accountNumber === data.accountNumber,
     );
 
     if (alreadyExists) {
@@ -49,8 +48,8 @@ const NequiForm: FC<NequiFormProps> = ({
     const newMethod: PaymentMethod = {
       id: crypto.randomUUID(),
       type: 'nequi',
-      account_holder: data.account_holder,
-      account_number: data.account_number,
+      accountHolder: data.accountHolder,
+      accountNumber: data.accountNumber,
     };
 
     setPaymentMethods((prev) => [...prev, newMethod]);
@@ -69,18 +68,18 @@ const NequiForm: FC<NequiFormProps> = ({
         <Input
           label="Nombre de Cuenta"
           placeholder="Nequi Casa"
-          {...register('account_holder')}
+          {...register('accountHolder')}
           isRequired
-          isInvalid={!!errors.account_holder}
-          errorMessage={errors.account_holder?.message}
+          isInvalid={!!errors.accountHolder}
+          errorMessage={errors.accountHolder?.message}
         />
         <Input
           label="Número de teléfono"
           placeholder="3101234567"
-          {...register('account_number')}
+          {...register('accountNumber')}
           isRequired
-          isInvalid={!!errors.account_number}
-          errorMessage={errors.account_number?.message}
+          isInvalid={!!errors.accountNumber}
+          errorMessage={errors.accountNumber?.message}
         />
       </div>
 

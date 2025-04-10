@@ -56,6 +56,11 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
+  const appUrl =
+    import.meta.env.MODE === 'development'
+      ? import.meta.env.VITE_APP_URL_DEV
+      : import.meta.env.VITE_APP_URL_PROD;
+
   return (
     <>
       <motion.header
@@ -72,7 +77,9 @@ const Navbar = () => {
         <nav className="flex justify-between items-center w-4/5 mx-auto h-full p-4">
           {/* Logo con animación de escala */}
           <motion.div style={{ scale: logoScale }}>
-            <Brand />
+            <a href={appUrl} aria-label="volver al inicio">
+              <Brand />
+            </a>
           </motion.div>
 
           {/* Desktop Navigation */}

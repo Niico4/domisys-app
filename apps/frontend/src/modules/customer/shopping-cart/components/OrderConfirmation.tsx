@@ -52,7 +52,7 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
       return (
         <div className="flex items-center gap-2 cursor-pointer">
           <IconCreditCard size={18} className="text-primary" />
-          <span>Tarjeta **** {paymentMethod.card_number?.slice(-4)}</span>
+          <span>Tarjeta **** {paymentMethod.cardNumber?.slice(-4)}</span>
         </div>
       );
     }
@@ -61,7 +61,7 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
       return (
         <div className="flex items-center gap-2 cursor-pointer">
           <IconTransfer size={18} className="text-primary" />
-          <span>Nequi: {paymentMethod.account_number}</span>
+          <span>Nequi: {paymentMethod.accountNumber}</span>
         </div>
       );
     }

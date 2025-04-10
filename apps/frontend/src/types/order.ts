@@ -6,13 +6,13 @@ import { ProductWithQuantity } from '@/store/useCart.store';
 
 export interface Order {
   id: string;
-  created_at: Date;
+  createdAt: Date;
   customer: Customer;
   delivery?: Delivery;
   paymentMethod: PaymentMethod;
   products: ProductWithQuantity[];
   status: OrderState;
-  total_amount: number;
+  totalAmount: number;
 }
 
 export type OrderState =

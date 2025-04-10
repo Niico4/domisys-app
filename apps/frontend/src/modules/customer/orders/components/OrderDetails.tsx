@@ -51,7 +51,7 @@ const OrderDetails = ({ order }: OrderCardProps) => {
             </div>
             <div className="flex flex-col gap-1">
               <p className="font-medium text-custom-neutral opacity-90">
-                {order.delivery.name} {order.delivery.lastname}
+                {order.delivery.name} {order.delivery.lastName}
               </p>
               <p className="text-xs text-muted">
                 {order.delivery.phoneNumber} • {order.delivery.email}
