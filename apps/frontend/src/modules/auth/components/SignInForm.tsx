@@ -9,6 +9,7 @@ import { signInSchema } from '../validations/auth.schema';
 
 import { paths } from '@/constants/routerPaths';
 import { AuthBase } from '@/modules/auth/types/auth';
+import { useAuthStore } from '@/store/useAuth.store';
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -25,23 +26,28 @@ const SignInForm = () => {
     },
   });
 
+  const login = useAuthStore((state) => state.login);
+
   const onSubmit = (data: AuthBase) => {
     try {
-      const response = {
-        email: data.email,
-        password: data.password,
-      };
+      const success = login(data.email, data.password);
 
-      toast.success(`Sesión iniciada - ${response.email}`);
+      if (!success) {
+        toast.error('Credenciales inválidas');
+        return;
+      }
+
+      toast.success('Sesión iniciada correctamente');
+      reset();
+
       setTimeout(() => {
         navigate('/', { replace: true });
-      }, 2000);
-
-      reset();
+      }, 1500);
     } catch (error) {
       toast.error(`Error al iniciar sesión - ${error}`);
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -70,7 +76,7 @@ const SignInForm = () => {
       <div className="flex items-center justify-end w-full">
         <Link
           className="text-sm text-primary opacity-80 hover:opacity-100 transition-all"
-          to={`/${paths.root}/${paths.recoverPassword}`}
+          to={`/${paths.authRoot}/${paths.recoverPassword}`}
         >
           ¿Olvidaste tu contraseña?
         </Link>
@@ -83,7 +89,7 @@ const SignInForm = () => {
         ¿No tienes una cuenta?{' '}
         <Link
           className="text-primary underline opacity-80 hover:opacity-100 transition-all"
-          to={`/${paths.root}/${paths.signUp}`}
+          to={`/${paths.authRoot}/${paths.signUp}`}
         >
           Crear una cuenta
         </Link>

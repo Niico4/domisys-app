@@ -1,5 +1,5 @@
 export const paths = {
-  root: 'auth',
+  authRoot: 'auth',
   signIn: 'sign-in',
   signUp: 'sign-up',
   recoverPassword: 'recover-password',
