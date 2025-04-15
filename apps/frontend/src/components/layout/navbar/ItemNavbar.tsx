@@ -27,6 +27,7 @@ const ItemNavbar = ({
             : 'hover:bg-gray-300/5'
         } flex-center gap-3 px-3 py-2 rounded-lg text-sm relative`
       }
+      viewTransition
     >
       {({ isActive }) => (
         <>

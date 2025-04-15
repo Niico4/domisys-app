@@ -12,6 +12,7 @@ import { Button } from '@heroui/button';
 import { Card } from '@heroui/card';
 import { Checkbox } from '@heroui/checkbox';
 import { Popover, PopoverTrigger, PopoverContent } from '@heroui/popover';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import CreditCardForm from '@/modules/customer/shopping-cart/components/payment-methods/CreditCardForm';
 import NequiForm from '@/modules/customer/shopping-cart/components/payment-methods/NequiForm';
@@ -229,20 +230,24 @@ const ShoppingCartPage = () => {
 
       <div className="grid grid-cols-2 items-start gap-20">
         <article>
-          <div className="flex flex-col gap-4 mb-4 h-[576px] overflow-scroll">
-            {cart.map(({ id, productName, price, stock, quantity }) => (
-              <ProductCartCard
-                key={id}
-                id={id}
-                handleQuantityChange={handleQuantityChange}
-                price={price}
-                productName={productName}
-                quantity={quantity}
-                removeFromCart={removeFromCart}
-                stock={stock}
-              />
-            ))}
-          </div>
+          <AnimatePresence>
+            <div className="flex flex-col gap-4 mb-4 h-[576px] overflow-auto px-4">
+              {cart.map(({ id, productName, price, stock, quantity }) => (
+                <motion.div key={id} layout>
+                  <ProductCartCard
+                    key={id}
+                    id={id}
+                    handleQuantityChange={handleQuantityChange}
+                    price={price}
+                    productName={productName}
+                    quantity={quantity}
+                    removeFromCart={removeFromCart}
+                    stock={stock}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </AnimatePresence>
         </article>
 
         <article className="flex flex-col justify-center gap-5 w-4/5 mx-auto">
