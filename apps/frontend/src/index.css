@@ -20,6 +20,32 @@
 }
 
 body {
+  --sb-track-color: #232e33;
+  --sb-thumb-color: #a0ced8;
+  --sb-size: 6px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 6px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+body {
   font-family: 'Space Grotesk', sans-serif;
   color: var(--color-gray);
 
