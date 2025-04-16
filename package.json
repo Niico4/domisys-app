@@ -1,11 +1,15 @@
 {
-  "name": "domisys-monorepo",
+  "name": "domisys",
   "private": true,
   "version": "1.0.0",
   "packageManager": "pnpm@10.7.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --filter=frontend --filter=landing",
+    "dev": "turbo run dev --filter=@domisys/client --filter=@domisys/landing",
     "lint": "turbo run lint",
     "test": "turbo run test"
   },
