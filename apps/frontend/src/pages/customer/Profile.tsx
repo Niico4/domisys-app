@@ -11,12 +11,13 @@ import {
   profileSchema,
 } from '@/modules/customer/validations/profile.schema';
 import useAuth from '@/hooks/useAuth';
+import { paths } from '@/constants/routerPaths';
 
 const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
-  const { user, logout, updatedUser } = useAuth();
+  const { user, logout, updateUser } = useAuth();
 
   const {
     register,
@@ -50,13 +51,12 @@ const ProfilePage = () => {
     try {
       if (!user) return;
 
-      const updateUser = { ...user, ...data };
-
-      updatedUser(updateUser);
+      updateUser(data);
       toast.success('Perfil actualizado correctamente');
       setIsEditing(false);
     } catch (error) {
-      toast.error(`Hubo un error al actualizar el perfil - ${error}`);
+      console.error(error);
+      toast.error(`Hubo un error al actualizar el perfil`);
     }
   };
 
@@ -70,7 +70,7 @@ const ProfilePage = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/auth/sign-in');
+    navigate(`/${paths.authRoot}/${paths.signIn}`);
   };
 
   const handleCancel = () => {
@@ -109,7 +109,7 @@ const ProfilePage = () => {
             label="Correo electrónico"
             isInvalid={!!errors.email}
             errorMessage={errors.email?.message}
-            disabled={!isEditing}
+            disabled
             {...register('email')}
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

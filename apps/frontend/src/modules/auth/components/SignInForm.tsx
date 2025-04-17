@@ -9,7 +9,7 @@ import { signInSchema } from '../validations/auth.schema';
 
 import { paths } from '@/constants/routerPaths';
 import { AuthBase } from '@/modules/auth/types/auth';
-import { useAuthStore } from '@/store/useAuth.store';
+import useAuth from '@/hooks/useAuth';
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -26,25 +26,22 @@ const SignInForm = () => {
     },
   });
 
-  const login = useAuthStore((state) => state.login);
+  const { login } = useAuth();
 
-  const onSubmit = (data: AuthBase) => {
+  const onSubmit = async (data: AuthBase) => {
     try {
-      const success = login(data.email, data.password);
+      const success = await login(data.email, data.password);
 
-      if (!success) {
-        toast.error('Credenciales inválidas');
-        return;
-      }
-
-      toast.success('Sesión iniciada correctamente');
-      reset();
+      if (!success) return;
 
       setTimeout(() => {
         navigate('/', { replace: true });
       }, 1500);
+
+      reset();
     } catch (error) {
-      toast.error(`Error al iniciar sesión - ${error}`);
+      console.error(error);
+      toast.error(`Error al iniciar sesión`);
     }
   };
 

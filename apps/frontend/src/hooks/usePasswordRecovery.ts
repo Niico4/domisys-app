@@ -17,9 +17,9 @@ const usePasswordRecovery = () => {
       setState((prev) => ({ ...prev, isLinkSent: true, isLoading: false }));
       toast.success(`Enlace enviado a ${email}`);
     } catch (error) {
+      console.error(error);
       setState((prev) => ({ ...prev, isLoading: false }));
       toast.error('Error al enviar el enlace');
-      throw error;
     }
   };
 

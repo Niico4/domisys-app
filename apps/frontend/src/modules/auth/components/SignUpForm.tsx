@@ -68,14 +68,15 @@ const SignUpForm = () => {
       };
 
       signUp(newUser);
-      toast.success(`Bienvenido ${newUser.name}`);
+
       setTimeout(() => {
         navigate(`/`, { replace: true });
-      }, 2000);
+      }, 1500);
 
       reset();
     } catch (error) {
-      toast.error(`Error al crear la cuenta - ${error}`);
+      console.error(error);
+      toast.error(`Error al crear la cuenta`);
     }
   };
 

@@ -41,7 +41,7 @@ export default defineConfig([
       ],
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
-      'no-console': 'error',
+      'no-console': ['error', { allow: ['error'] }],
     },
   },
   tseslint.configs.recommended,
