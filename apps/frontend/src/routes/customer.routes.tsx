@@ -8,7 +8,7 @@ import {
 } from '@tabler/icons-react';
 
 import { paths } from '@/constants/routerPaths';
-import HomePage from '@/pages/customer/Home';
+import HomePage from '@/pages/customer';
 import OrdersPage from '@/pages/customer/Orders';
 import ProfilePage from '@/pages/customer/Profile';
 import ShoppingCartPage from '@/pages/customer/ShoppingCart';
@@ -23,7 +23,7 @@ interface CustomerRouteType {
 
 export const customerRoutes: CustomerRouteType[] = [
   {
-    path: paths.home,
+    path: paths.root,
     icon: IconHome,
     label: 'Inicio',
     element: <HomePage />,

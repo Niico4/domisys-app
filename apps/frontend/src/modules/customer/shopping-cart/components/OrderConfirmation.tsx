@@ -79,7 +79,8 @@ const OrderConfirmation: FC<OrderConfirmationProps> = ({
         toast.success('¡Pedido realizado con éxito!');
       }
     } catch (error) {
-      toast.error(`Error al procesar el pago - ${error}`);
+      console.error(error);
+      toast.error(`Error al procesar el pago`);
     } finally {
       setIsProcessing(false);
     }

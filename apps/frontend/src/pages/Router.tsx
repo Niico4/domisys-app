@@ -10,8 +10,9 @@ import SignUpPage from './auth/SignUp';
 import RecoverPasswordPage from './auth/RecoverPassword';
 
 import { paths } from '@/constants/routerPaths';
-import { customerRoutes } from '@/routes/customer.routes';
+import { customerRoutes, deliveryRoutes } from '@/routes';
 import AppLayout from '@/components/layout/AppLayout';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 export default function AppRouter() {
   return <RouterProvider router={router} />;
@@ -26,8 +27,28 @@ export const router = createBrowserRouter(
         <Route path={paths.recoverPassword} element={<RecoverPasswordPage />} />
       </Route>
 
-      <Route path="/" element={<AppLayout />}>
+      <Route
+        path={paths.root}
+        element={
+          <ProtectedRoute isDelivery={false}>
+            <AppLayout />
+          </ProtectedRoute>
+        }
+      >
         {customerRoutes.map(({ path, element }, index) => (
+          <Route key={index} path={path} element={element} />
+        ))}
+      </Route>
+
+      <Route
+        path={paths.deliveryRoot}
+        element={
+          <ProtectedRoute isDelivery={true}>
+            <AppLayout />
+          </ProtectedRoute>
+        }
+      >
+        {deliveryRoutes.map(({ path, element }, index) => (
           <Route key={index} path={path} element={element} />
         ))}
       </Route>

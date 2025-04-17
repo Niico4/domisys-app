@@ -172,7 +172,8 @@ const ShoppingCartPage = () => {
 
       return newOrder.id;
     } catch (error) {
-      toast.error(`Error al procesar el pedido ${error}`);
+      console.error(error);
+      toast.error(`Error al procesar el pedido`);
       return null;
     }
   }, [selectedPaymentMethod, paymentMethodType, cart, total, addOrder]);
